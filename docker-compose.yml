@@ -1,0 +1,42 @@
+version: '3.4'
+  
+services:
+  postgres:
+    image: postgres:${POSTGRES_TAG:-latest}
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+  redis:
+    image: redis:${REDIS_TAG:-latest}
+    volumes:
+      - redis_data:/data
+  ur_l:
+    build:
+      dockerfile: ./docker/Dockerfile
+      context: .
+      target: ${TARGET_ENV:-production}
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+      - PORT=${UR_L_PORT:-8000}
+    volumes:
+      - ./app:/dev_app
+    command: runserver
+    stdin_open: true
+    tty: true
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - redis
+
+volumes:
+  db-data:
+    driver: local
+  redis_data:
+    driver: local
