@@ -1,4 +1,4 @@
-name: Python package
+name: Docker Build
 
 on: [push]
 
@@ -9,5 +9,5 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Build
+    - name: Docker Build
       run: docker build --tag poetry-project --file docker/Dockerfile .
