@@ -1,0 +1,16 @@
+# ENV Variables required (no fallback):
+# DJANGO_SECRET_KEY
+version: '3.4'
+  
+services:
+  postgres:
+    logging:
+      driver: none
+  redis:
+    logging:
+      driver: none
+  ur_l:
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./app:/dev_app

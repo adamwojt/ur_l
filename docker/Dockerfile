@@ -48,7 +48,7 @@ WORKDIR /app
 COPY . .
 
 # Copying in our entrypoint
-COPY ./docker/docker-entrypoint.sh /docker-entrypoint.sh
+COPY ./docker/docker-entrypoint_dev.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 EXPOSE 8000
 ENTRYPOINT /docker-entrypoint.sh $0 $@

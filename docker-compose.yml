@@ -1,3 +1,5 @@
+# ENV Variables required (no fallback):
+# DJANGO_SECRET_KEY
 version: '3.4'
   
 services:
@@ -6,29 +8,32 @@ services:
     environment:
       - POSTGRES_USER=${POSTGRES_USER:-postgres}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+      - POSTGRES_DB=${POSTGRES_DB:-postgres}
     volumes:
       - db-data:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - ${POSTGRES_PORT:-5432}:${POSTGRES_PORT:-5432}
   redis:
     image: redis:${REDIS_TAG:-latest}
     volumes:
       - redis_data:/data
   ur_l:
+    image: url_l_${TARGET_ENV:-production}
     build:
       dockerfile: ./docker/Dockerfile
       context: .
       target: ${TARGET_ENV:-production}
     environment:
       - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=${POSTGRES_PORT:-5432}
       - POSTGRES_USER=${POSTGRES_USER:-postgres}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+      - POSTGRES_DB=${POSTGRES_DB:-postgres}
       - PORT=${UR_L_PORT:-8000}
-    volumes:
-      - ./app:/dev_app
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY:?Django Secret}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
     command: runserver
-    stdin_open: true
-    tty: true
     ports:
       - "8000:8000"
     depends_on:

@@ -11,3 +11,5 @@ jobs:
 
     - name: Docker Build
       run: docker build --tag poetry-project --file docker/Dockerfile .
+      env:
+        DJANGO_SECRET_KEY: test
