@@ -9,8 +9,8 @@ echo "Starting Production Enviroment"
 
 if [ "$1" = "runserver" ]; then
 	gunicorn --bind 0.0.0.0:$PORT ur_l.wsgi:application
-elif [ "$1" = 'migrate' ]; then
-	python manage.py migrate
+elif [ "$1" = 'manage' ]; then
+	python manage.py "${@:2}"
 fi
 
 exit
