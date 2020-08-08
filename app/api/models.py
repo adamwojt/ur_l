@@ -2,7 +2,6 @@ import logging
 import secrets
 
 from django.core.cache import cache
-from django.core.exceptions import PermissionDenied
 from django.db import models
 from django.db.models.signals import post_delete, post_save
 from django.dispatch.dispatcher import receiver
@@ -14,7 +13,7 @@ _logger = logging.getLogger(__name__)
 
 
 class CollisionLog(models.Model):
-    token = models.CharField(max_length=conf.TOKEN_LENGHT_STR, db_index=True)
+    token = models.CharField(max_length=conf.TOKEN_LENGTH_STR, db_index=True)
     collision_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -34,7 +33,7 @@ class ClickLog(models.Model):
 class UrlManager(models.Manager):
     @staticmethod
     def _get_random_url_token():
-        return secrets.token_urlsafe(conf.TOKEN_LENGHT_BYTES)
+        return secrets.token_urlsafe(conf.TOKEN_LENGTH_BYTES)
 
     @staticmethod
     def _on_token_collision(token):
@@ -101,7 +100,7 @@ class UrlManager(models.Manager):
 
 class Url(models.Model):
     token = models.CharField(
-        max_length=conf.TOKEN_LENGHT_STR, primary_key=True, db_index=True
+        max_length=conf.TOKEN_LENGTH_STR, primary_key=True, db_index=True
     )
     long_url = models.CharField(
         max_length=500, validators=[OptionalSchemeURLValidator()]
