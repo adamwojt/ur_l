@@ -48,7 +48,7 @@ WORKDIR /app
 COPY . .
 
 # Copying in our entrypoint
-COPY ./docker/docker-entrypoint_dev.sh /docker-entrypoint.sh
+COPY ./python_docker/docker-entrypoint_dev.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 EXPOSE 8000
 ENTRYPOINT /docker-entrypoint.sh $0 $@
@@ -59,13 +59,6 @@ RUN black --config ./pyproject.toml --check app
 RUN isort --settings-path ./pyproject.toml --recursive --check-only
 RUN safety check
 
-# 'test' stage runs our unit tests with pytest and
-# coverage.  Build will fail if test coverage is under 95%
-FROM development AS test
-# RUN coverage run --rcfile ./pyproject.toml -m pytest ./tests
-# RUN coverage report --fail-under 95
-
-
 # 'production' stage uses the clean 'python-base' stage and copyies
 # in only our runtime deps that were installed in the 'builder-base'
 FROM python-base as production
@@ -75,8 +68,9 @@ COPY --from=builder-base $VENV_PATH $VENV_PATH
 
 COPY ./app /app
 WORKDIR /app
+RUN mkdir staticfiles
 
-COPY ./docker/docker-entrypoint.sh /docker-entrypoint.sh
+COPY ./python_docker/docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
-EXPOSE 8000
+EXPOSE $UR_L_PORT
 ENTRYPOINT /docker-entrypoint.sh $0 $@

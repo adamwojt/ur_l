@@ -1,5 +1,7 @@
 # ENV Variables required (no fallback):
 # DJANGO_SECRET_KEY
+# TARGET_ENV
+
 version: '3.4'
   
 services:
@@ -18,30 +20,53 @@ services:
     volumes:
       - redis_data:/data
   ur_l:
-    image: url_l_${TARGET_ENV:-production}
+    image: ur_l_${TARGET_ENV:?Target Environment}
     build:
-      dockerfile: ./docker/Dockerfile
+      dockerfile: ./python_docker/Dockerfile
       context: .
-      target: ${TARGET_ENV:-production}
+      target: ${TARGET_ENV:?Target Environment}
     environment:
+      - COV_FAIL_THRESHOLD=90
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY:?Django Secret}
+      - POSTGRES_DB=${POSTGRES_DB:-postgres}
       - POSTGRES_HOST=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
       - POSTGRES_PORT=${POSTGRES_PORT:-5432}
       - POSTGRES_USER=${POSTGRES_USER:-postgres}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
-      - POSTGRES_DB=${POSTGRES_DB:-postgres}
-      - PORT=${UR_L_PORT:-8000}
-      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY:?Django Secret}
       - REDIS_HOST=redis
       - REDIS_PORT=6379
+      - CACHE_TIMEOUT_CREATE=${CACHE_TIMEOUT_CREATE:-900}
+      - CACHE_TIMEOUT_READ=${CACHE_TIMEOUT_READ:-900}
+      - LOG_TOKEN_COLLISION=${LOG_TOKEN_COLLISION:-1}
+      - NUM_GUNICORN_WORKERS=${NUM_GUNICORN_WORKERS:-4}
+      - UR_L_PORT=${UR_L_PORT:-8000}
+      - URL_USE_CACHE=${URL_USE_CACHE:-1}
     command: runserver
-    ports:
-      - "8000:8000"
     depends_on:
       - postgres
       - redis
+    volumes:
+      - static_volume:/app/staticfiles
+    expose:
+      - ${UR_L_PORT:-8000}
+  nginx:
+    image: ur_l_nginx
+    environment:
+      - UR_L_PORT=${UR_L_PORT:-8000}
+    build:
+      dockerfile: ./nginx_docker/Dockerfile
+      context: .
+    ports:
+      - ${UR_L_PORT:-8000}:80
+    depends_on:
+      - ur_l
+    volumes:
+      - static_volume:/ur_l/staticfiles
 
 volumes:
   db-data:
     driver: local
   redis_data:
+    driver: local
+  static_volume:
     driver: local

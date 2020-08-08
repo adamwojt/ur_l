@@ -1,5 +1,7 @@
 # ENV Variables required (no fallback):
 # DJANGO_SECRET_KEY
+# TARGET_ENV
+
 version: '3.4'
   
 services:
@@ -10,7 +12,20 @@ services:
     logging:
       driver: none
   ur_l:
+    environment:
+      - COV_FAIL_THRESHOLD=90
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY:?Django Secret}
+      - POSTGRES_DB=${POSTGRES_DB:-postgres}
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+      - POSTGRES_PORT=${POSTGRES_PORT:-5432}
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - UR_L_PORT=${UR_L_PORT:-8000}
     stdin_open: true
     tty: true
     volumes:
       - ./app:/dev_app
+  nginx:
+    command: /bin/true

@@ -11,19 +11,21 @@ authors = ["Adam Wojtczak <adam1edinburgh@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.8"
 
+coverage = { version = "5.0.3", extras = ["toml"]}
 django = "3.1"
-gunicorn = "^20.0.4"
-djangorestframework = "3.11.1"
-psycopg2-binary = "2.8.5"
-redis = "3.5.3"
 django-redis = "4.12.1"
+djangorestframework = "3.11.1"
+fakeredis = "1.4.2"
+gunicorn = "^20.0.4"
+psycopg2-binary = "2.8.5"
+pytest = "5.3.5"
+pytest-cov = "2.10.0"
+pytest-django = "3.9.0"
+redis = "3.5.3"
 
 [tool.poetry.dev-dependencies]
-pytest = "5.3.5"
-coverage = { version = "5.0.3", extras = ["toml"]}
 black = "^19.10b0"
 isort = { version = "^4.3.21", extras = ["pyproject"]}
-requests = "^2.23.0"
 safety = "1.9.0"
 
 [tool.black]
@@ -39,6 +41,7 @@ exclude = '''
     | htmlcov
     | venv
     | .venv
+    | migrations
   )/
 )
 '''
@@ -51,7 +54,6 @@ indent = '    '
 multi_line_output = 3
 include_trailing_comma = true
 force_grid_wrap = 0
-
 
 [tool.coverage]
 # https://github.com/nedbat/coveragepy

@@ -1,15 +1,24 @@
-name: Docker Build
+name: Docker Build + Tests
 
 on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:
+        DJANGO_SECRET_KEY: test
+        UR_L_PORT: 8000
+        TARGET_ENV: production
     steps:
     - uses: actions/checkout@v2
 
-    - name: Docker Build
-      run: docker build --tag poetry-project --file docker/Dockerfile .
-      env:
-        DJANGO_SECRET_KEY: test
+    - name: Build # Linting happens here too, see Dockerfile
+      run: docker-compose -f docker-compose.yml build
+    - name: Up
+      run: docker-compose -f docker-compose.yml up
+    - name: Curl
+      run: curl -f -LI "localhost:$UR_L_PORT"
+    - name: Stop
+      run: docker-compose stop
+    - name: Test
+      run: docker-compose -f docker-compose.yml run ur_l test

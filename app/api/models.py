@@ -38,14 +38,15 @@ class UrlManager(models.Manager):
     @staticmethod
     def _on_token_collision(token):
         _logger.debug("Token collision : %s", token)
-        CollisionLog.objects.create(token=token)
+        if conf.LOG_COLLISIONS:
+            CollisionLog.objects.create(token=token)
 
     def create_short_url(self, long_url, token=None):
         """Create retrying on token collision
 
         Args:
             long_url (str)
-            token (str, optional)
+            token (str, optional) - mostly for tests
 
         Returns:
             TYPE: bool
@@ -66,19 +67,18 @@ class UrlManager(models.Manager):
 
         return self.create(token=token, long_url=long_url)
 
-    def get_long_url(self, token, use_cache=True):
+    def get_long_url(self, token):
         """Fetch long url using token
 
         Args:
             token (str)
-            use_cache (bool, optional)
 
         Returns:
             TYPE: str
         """
         long_url = ""
 
-        if use_cache:
+        if conf.USE_CACHE:
             long_url = cache.get(token)
 
         if not long_url:
@@ -92,8 +92,10 @@ class UrlManager(models.Manager):
             _logger.debug("Token fetched from cache : %s", token)
 
         if long_url:
-            cache.set(token, long_url, timeout=conf.CACHE_TIMEOUT_READ)
-            ClickLog.objects.create(url_id=token)  # TODO Move probably to views
+            if conf.USE_CACHE:
+                cache.set(token, long_url, timeout=conf.CACHE_TIMEOUT_READ)
+
+            # ClickLog.objects.create(url_id=token)  # TODO Move probably to views
 
         return long_url
 
@@ -115,7 +117,8 @@ class Url(models.Model):
 @receiver(post_delete, sender=Url)
 def _url_post_delete(sender, instance, *args, **kwargs):
     """ Clear cache on delete """
-    cache.delete(instance.token)
+    if conf.USE_CACHE:
+        cache.delete(instance.token)
 
 
 @receiver(post_save, sender=Url)
@@ -123,11 +126,11 @@ def _url_post_save(sender, instance, *args, **kwargs):
     """ Update cache on save preserving timeout
         Credit: https://stackoverflow.com/a/7934958
     """
-
-    timeout = cache.ttl(instance.token)
-    if timeout or kwargs.get("created"):
-        cache.set(
-            instance.token,
-            instance.long_url,
-            timeout=timeout or conf.CACHE_TIMEOUT_CREATE,
-        )
+    if conf.USE_CACHE:
+        timeout = cache.ttl(instance.token)
+        if timeout or kwargs.get("created"):
+            cache.set(
+                instance.token,
+                instance.long_url,
+                timeout=timeout or conf.CACHE_TIMEOUT_CREATE,
+            )
