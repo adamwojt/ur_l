@@ -2,10 +2,10 @@ import logging
 import secrets
 
 from django.core.cache import cache
+from django.core.exceptions import PermissionDenied
 from django.db import models
 from django.db.models.signals import post_delete, post_save
 from django.dispatch.dispatcher import receiver
-from django.core.exceptions import PermissionDenied
 
 from .apps import ApiConfig as conf
 from .validators import OptionalSchemeURLValidator
@@ -103,7 +103,9 @@ class Url(models.Model):
     token = models.CharField(
         max_length=conf.TOKEN_LENGHT_STR, primary_key=True, db_index=True
     )
-    long_url = models.CharField(max_length=500, validators=[OptionalSchemeURLValidator()])
+    long_url = models.CharField(
+        max_length=500, validators=[OptionalSchemeURLValidator()]
+    )
     create_date = models.DateTimeField(auto_now_add=True)
     objects = UrlManager()
 
