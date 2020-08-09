@@ -17,8 +17,6 @@ services:
       - ${POSTGRES_PORT:-5432}:${POSTGRES_PORT:-5432}
   redis:
     image: redis:${REDIS_TAG:-latest}
-    volumes:
-      - redis_data:/data
   ur_l:
     image: ur_l_${TARGET_ENV:?Target Environment}
     build:
@@ -65,8 +63,6 @@ services:
 
 volumes:
   db-data:
-    driver: local
-  redis_data:
     driver: local
   static_volume:
     driver: local
