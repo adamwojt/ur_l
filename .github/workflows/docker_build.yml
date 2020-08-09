@@ -15,9 +15,9 @@ jobs:
     - name: docker-compose build # Linting happens here too, see Dockerfile
       run: docker-compose -f docker-compose.yml build
     - name: docker-compose up
-      run: docker-compose -f docker-compose.yml up
+      run: docker-compose -f docker-compose.yml up -d
     - name: curl to check if alive
-      run: curl -f -LI "localhost:$UR_L_PORT"
+      run: sleep 20 && curl -f -LI "localhost:$UR_L_PORT/admin"
     - name: docker-compose stop
       run: docker-compose stop
     - name: run tests
