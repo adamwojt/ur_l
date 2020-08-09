@@ -12,13 +12,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Build # Linting happens here too, see Dockerfile
+    - name: docker-compose build # Linting happens here too, see Dockerfile
       run: docker-compose -f docker-compose.yml build
-    - name: Up
+    - name: docker-compose up
       run: docker-compose -f docker-compose.yml up
-    - name: Curl
+    - name: curl to check if alive
       run: curl -f -LI "localhost:$UR_L_PORT"
-    - name: Stop
+    - name: docker-compose stop
       run: docker-compose stop
-    - name: Test
+    - name: run tests
       run: docker-compose -f docker-compose.yml run ur_l test
