@@ -12,6 +12,11 @@ ENV PYTHONUNBUFFERED=1 \
 
 ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
 
+ENV WAIT_VERSION 2.7.2
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/$WAIT_VERSION/wait /wait
+RUN chmod +x /wait
+COPY ./python_docker/wait-for-postgres.sh /wait-for-postgres.sh
+RUN chmod +x /wait-for-postgres.sh
 
 # builder-base is used to build dependencies
 FROM python-base as builder-base
@@ -26,10 +31,10 @@ RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poet
 
 # We copy our Python requirements here to cache them
 # and install only runtime deps using poetry
+
 WORKDIR $PYSETUP_PATH
 COPY ./poetry.lock ./pyproject.toml ./
 RUN poetry install --no-dev  # respects 
-
 
 # 'development' stage installs all dev deps and can be used to develop code.
 # For example using docker-compose to mount local volume under /app
@@ -44,8 +49,8 @@ COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
 WORKDIR $PYSETUP_PATH
 RUN poetry install
 
-WORKDIR /app
-COPY . .
+RUN mkdir /dev_app
+WORKDIR /dev_app
 
 # Copying in our entrypoint
 COPY ./python_docker/docker-entrypoint_dev.sh /docker-entrypoint.sh
@@ -55,8 +60,9 @@ ENTRYPOINT /docker-entrypoint.sh $0 $@
 
 # 'lint' stage runs black, isort, safety
 FROM development AS lint
-RUN black --config ./pyproject.toml --check app
-RUN isort --settings-path ./pyproject.toml --recursive --check-only
+COPY app ./app
+RUN black --config $PYSETUP_PATH/pyproject.toml --check app
+RUN isort --settings-path $PYSETUP_PATH/pyproject.toml --recursive --check-only
 RUN safety check
 
 # 'production' stage uses the clean 'python-base' stage and copyies

@@ -16,8 +16,8 @@ jobs:
       run: docker-compose -f docker-compose.yml build
     - name: docker-compose up
       run: docker-compose -f docker-compose.yml up -d
-    - name: curl to check if alive
-      run: sleep 20 && curl -f -LI "localhost:$UR_L_PORT/admin"
+    - name: Nginx Benchmark
+      run: docker exec `docker ps -qf "name=ur_l_nginx"` benchmark
     - name: docker-compose stop
       run: docker-compose stop
     - name: run tests

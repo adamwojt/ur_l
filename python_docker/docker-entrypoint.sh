@@ -1,8 +1,9 @@
 #!/bin/bash
-
 set -e
 Cyan='\e[36m'
 Red='\e[31m'
+
+/wait-for-postgres.sh
 
 # activate our virtual environment here
 . /opt/pysetup/.venv/bin/activate

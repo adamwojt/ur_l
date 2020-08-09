@@ -1,7 +1,9 @@
 #!/bin/bash
-
 set -e
 Green='\e[32m'
+PYTEST_CACHE_DIR=.pytest_cache
+
+/wait-for-postgres.sh
 
 # activate our virtual environment here
 . /opt/pysetup/.venv/bin/activate
@@ -11,14 +13,15 @@ printf $Green"Starting Development Enviroment\n"
 printf $Green"*******************************\n"
 
 if [ "$1" = "runserver" ]; then
-	python /dev_app/manage.py runserver 0.0.0.0:$UR_L_PORT
+	python manage.py runserver 0.0.0.0:$UR_L_PORT
 elif [ "$1" = 'manage' ]; then
-	python /dev_app/manage.py "${@:2}"
+	python manage.py "${@:2}"
 elif [ "$1" = 'lint_mounted_dir' ]; then
-	black --config $PYSETUP_PATH/pyproject.toml --check /dev_app
-	isort -sg migrations --settings-path $PYSETUP_PATH/pyproject.toml --recursive --check-only /dev_app
+	black --config $PYSETUP_PATH/pyproject.toml --check .
+	isort -sg migrations --settings-path $PYSETUP_PATH/pyproject.toml --recursive --check-only .
 elif [ "$1" = 'test' ]; then
-	pytest --cov-config=/dev_app/.coveragerc --cov-fail-under=$COV_FAIL_THRESHOLD --cov=/dev_app /dev_app
+	if [ -d "$PYTEST_CACHE_DIR" ]; then rm -Rf $PYTEST_CACHE_DIR; fi
+	pytest --cov-config=.coveragerc --cov-fail-under=$COV_FAIL_THRESHOLD --cov=. .
 else
 	exec "$@"
 fi
