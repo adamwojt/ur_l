@@ -1,4 +1,4 @@
-name: Docker Build + Tests
+name: Docker
 
 on: [push]
 
@@ -9,16 +9,24 @@ jobs:
         DJANGO_SECRET_KEY: test
         UR_L_PORT: 8000
         TARGET_ENV: production
+        DOCKER_USER: ${{ secrets.DOCKER_USER }}
+        DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
     steps:
     - uses: actions/checkout@v2
 
-    - name: docker-compose build # Linting happens here too, see Dockerfile
+    - name: Build Container
       run: docker-compose -f docker-compose.yml build
-    - name: docker-compose up
-      run: docker-compose -f docker-compose.yml up -d
-    - name: Nginx Benchmark
+    - name: Run main app
+      run: docker-compose -f docker-compose.yml run -d ur_l
+    - name: Run Nginx
+      run: docker-compose -f docker-compose.yml run -d nginx
+    - name: Run Nginx benchmark
       run: docker exec `docker ps -qf "name=ur_l_nginx"` benchmark
-    - name: docker-compose stop
+    - name: Stop services
       run: docker-compose stop
-    - name: run tests
+    - name: Run tests
       run: docker-compose -f docker-compose.yml run ur_l test
+    - name: Docker setup
+      run: docker login --username=$DOCKER_USER --password=$DOCKER_PASS
+    - name: Docker push
+      run: docker-compose push

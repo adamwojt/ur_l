@@ -23,8 +23,9 @@ if [ "$1" = "runserver" ]; then
 	printf $Cyan"Log Token Collision -> $LOG_TOKEN_COLLISION\n"
 
 	# This is just to make `docker-compose up` work first time
-	# Real production should not run these two below
+	# Real production should run these manually
 	python manage.py collectstatic --no-input
+	python manage.py makemigrations api --no-input
 	python manage.py migrate --no-input
 
 	gunicorn --bind 0.0.0.0:$UR_L_PORT --workers $NUM_GUNICORN_WORKERS --capture-output ur_l.wsgi:application

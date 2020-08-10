@@ -1,3 +1,5 @@
+![CI](https://github.com/adamwojt/ur_l/workflows/Docker/badge.svg?branch=master&event=push)![Bandit](https://github.com/adamwojt/ur_l/workflows/Bandit%20Security/badge.svg?branch=master&event=push)
+
 # UR_L shortener
 
 ### Requirements
@@ -52,7 +54,7 @@ click_limit
 
 **read**
 ```
-GET /api/urls/{token}\/
+GET /api/urls/{token}/
 
 Return the given url using token.
 Path Parameters

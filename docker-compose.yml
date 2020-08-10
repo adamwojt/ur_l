@@ -18,7 +18,7 @@ services:
   redis:
     image: redis:${REDIS_TAG:-latest}
   ur_l:
-    image: ur_l_${TARGET_ENV:?Target Environment}
+    image: adamwojt/adamwojt:ur_l_${TARGET_ENV:?Target Environment}
     build:
       dockerfile: ./python_docker/Dockerfile
       context: .
@@ -48,7 +48,7 @@ services:
     expose:
       - ${UR_L_PORT:-8000}
   nginx:
-    image: ur_l_nginx
+    image: adamwojt/adamwojt:ur_l_nginx
     environment:
       - UR_L_PORT=${UR_L_PORT:-8000}
     build:

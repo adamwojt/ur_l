@@ -3,7 +3,7 @@ name: Bandit Security
 on: push
 
 jobs:
-  build:
+  bandit:
     runs-on: ubuntu-latest
 
     steps:

@@ -14,6 +14,8 @@ RUN apk update \
 COPY nginx_docker/nginx.conf /etc/nginx/conf.d
 
 COPY ./nginx_docker/benchmark_script.sh /usr/sbin/benchmark
+COPY ./nginx_docker/benchmark.json .
 RUN chmod +x /usr/sbin/benchmark
+RUN mkdir /staticfiles
 
 CMD [ "/usr/local/bin/ep", "-v", "/etc/nginx/conf.d/nginx.conf", "--", "/usr/sbin/nginx", "-c", "/etc/nginx/nginx.conf", "-g", "daemon off;"]

@@ -1,3 +1,8 @@
+""" 
+   isort:skip_file
+   clashes with black
+"""
+
 import pytest
 from django.core.cache import cache
 from django.http import (
@@ -77,6 +82,7 @@ def test_api_workflow(api_client, django_assert_num_queries):
         response = api_client.post(
             f"/{conf.API_URL_PATH}", data=url["data"], format="json"
         )
+
         data = response.json()
 
         assert response.status_code == url["status"]
@@ -101,8 +107,9 @@ def test_api_workflow(api_client, django_assert_num_queries):
 
     for url in created:
         response = api_client.get(
-            f"/{conf.API_URL_PATH}{url['token']}?clicks=1",
+            f"/{conf.API_URL_PATH}{url['token']}/?clicks=1",
             content_type="application/json",
+            format="json",
         )
         url.update(click_count=0)
         assert response.json() == url
@@ -144,7 +151,7 @@ def test_api_workflow(api_client, django_assert_num_queries):
     url = Url.objects.all()[0]
     new_url = "https://brand.new"
     response = api_client.put(
-        f"/{conf.API_URL_PATH}{url.token}", data={"long_url": new_url}, format="json"
+        f"/{conf.API_URL_PATH}{url.token}/", data={"long_url": new_url}, format="json"
     )
 
     # Now let's see click logs
@@ -166,7 +173,7 @@ def test_api_workflow(api_client, django_assert_num_queries):
     # Finally delete all
 
     for url in Url.objects.all():
-        response = api_client.delete(f"/{conf.API_URL_PATH}{url.token}")
+        response = api_client.delete(f"/{conf.API_URL_PATH}{url.token}/")
         assert response.status_code == HTTP_204_NO_CONTENT
 
     assert not Url.objects.all()

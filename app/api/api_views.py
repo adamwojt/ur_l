@@ -79,6 +79,6 @@ class UrlDetail(APIView):
         url.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    def get_serializer(self):
+    def get_serializer(self, *args, **kwargs):
         """ This is just for correct doc rendering"""
         return UrlSerializer()
