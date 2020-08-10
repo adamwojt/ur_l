@@ -85,6 +85,9 @@ The following parameters should be included in the URL path.
 token (required)
 ```
 
+**admin**
+There is admin panel available too under `/admin`. Make sure to `createsuperuser` before.
+
 ---
 
 ## Local development
@@ -239,3 +242,20 @@ Percentage of the requests served within a certain time (ms)
   99%     57
  100%    160 (longest request)
 ```
+
+## CI
+
+![CI](https://github.com/adamwojt/ur_l/workflows/Docker/badge.svg?branch=master&event=push)![Bandit](https://github.com/adamwojt/ur_l/workflows/Bandit%20Security/badge.svg?branch=master&event=push)
+
+### Current workflow
+
+- Build Docker Image (linters here)
+- Run everything
+- Benchmark with [ab](https://en.wikipedia.org/wiki/ApacheBench)
+- Run tests (pass >= 90% covered )
+- Push Docker Image
+
+## Credits
+
+- I tried to reference snippets in code
+- Build is based on https://github.com/michael0liver/python-poetry-docker-example which was also first presented in here https://github.com/python-poetry/poetry/issues/1879
