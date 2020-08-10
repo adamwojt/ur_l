@@ -1,15 +1,12 @@
-# pylint: disable-all
 import pytest
 from django.core.cache import cache
-from django.core.exceptions import ValidationError
-from django.test import override_settings
 
 from ..apps import ApiConfig
 from ..models import CollisionLog, Url
 
 
 class TestURLWithoutDB:
-    def test_get_random_url_token(_):
+    def test_get_random_url_token(self):
         """ Test _get_random_url_token"""
         token = Url.objects._get_random_url_token()
         assert len(token) == ApiConfig.TOKEN_LENGTH_STR
@@ -23,18 +20,7 @@ class TestURLWithDB:
     def setup_method(self, method):
         ApiConfig.USE_CACHE = "cache" in method.__name__
 
-    def test_create_from_empty_url(_):
-        with pytest.raises(ValidationError):
-            url = Url.objects.create_short_url("")
-
-    def test_create_from_invalid_url(_):
-        with pytest.raises(ValidationError):
-            url = Url.objects.create_short_url("heybob")
-
-    def test_create_from_no_schema_url(_):
-        Url.objects.create_short_url("www.google.com")
-
-    def test_create_from_schema_url(self):
+    def test_create_url(self):
         Url.objects.create_short_url(self.schema_url)
 
     def test_cache_life_cycle(self):
@@ -65,6 +51,11 @@ class TestURLWithDB:
 
         collision_log = CollisionLog.objects.get(token=self.test_token)
         assert collision_log.token == self.test_token
+
+    def test_collisions_are_rare(self):
+        for _ in range(1000):
+            Url.objects.create_short_url(self.schema_url)
+        assert CollisionLog.objects.all().count() <= 3
 
     def test_token_no_collsion_log(self):
         ApiConfig.LOG_COLLISIONS = False

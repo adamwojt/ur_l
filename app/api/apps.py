@@ -13,6 +13,15 @@ class ApiConfig(AppConfig):
 
     TOKEN_LENGTH_BYTES = 5
     TOKEN_LENGTH_STR = 7
+    TOKEN_REGEX_MATCH = rf"(?P<token>[A-Za-z0-9+_-]{{{TOKEN_LENGTH_STR}}})"
+
+    SHORT_URL_PATH = rf"^{TOKEN_REGEX_MATCH}\/?$"
+
+    API_ROOT_PATH = "api/"
+    API_URL_PATH = f"{API_ROOT_PATH[:-1]}/urls/"
+    API_TOKEN_PATH = rf"^{API_URL_PATH[:-1]}/{TOKEN_REGEX_MATCH}/"
+    API_DOCS_PATH = f"{API_ROOT_PATH[:-1]}/docs/"
+    API_DOCS_TITLE = "UR_L Shortener"
 
     USE_CACHE = os.environ.get("URL_USE_CACHE") == "1"
     # Determines how long token will stay in cache after creation
@@ -26,3 +35,6 @@ class ApiConfig(AppConfig):
 
     # Log token collisions for metrics
     LOG_COLLISIONS = os.environ.get("LOG_TOKEN_COLLISION") == "1"
+
+    DOMAIN = "localhost"
+    URL_FORMAT = f"{DOMAIN}:{os.environ.get('UR_L_PORT')}/{{token}}"

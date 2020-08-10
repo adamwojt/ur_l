@@ -7,7 +7,9 @@ RUN rm /etc/nginx/conf.d/default.conf
 RUN curl -sLo /usr/local/bin/ep https://github.com/kreuzwerker/envplate/releases/download/v0.0.8/ep-linux && chmod +x /usr/local/bin/ep
 
 # Credit https://github.com/JensPiegsa/ab/blob/master/Dockerfile
-RUN apk add --no-cache apache2-utils
+RUN apk update \
+ && apk add --no-cache apache2-utils \
+ && apk add jq
 
 COPY nginx_docker/nginx.conf /etc/nginx/conf.d
 

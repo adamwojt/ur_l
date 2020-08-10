@@ -2,12 +2,12 @@ import logging
 import secrets
 
 from django.core.cache import cache
+from django.core.validators import URLValidator
 from django.db import models
 from django.db.models.signals import post_delete, post_save
 from django.dispatch.dispatcher import receiver
 
 from .apps import ApiConfig as conf
-from .validators import OptionalSchemeURLValidator
 
 _logger = logging.getLogger(__name__)
 
@@ -30,6 +30,18 @@ class ClickLog(models.Model):
         return self.url_id
 
 
+@receiver(post_save, sender=ClickLog)
+def _click_log_post_save(sender, instance, *args, **kwargs):
+    """ Observe number of clicks and remove when limit is reached
+    """
+    limit = instance.url.click_limit
+    if not kwargs.get("created") or not limit:
+        return
+    total_clicks = instance.url.clicks.count()
+    if total_clicks >= limit:
+        instance.url.delete()
+
+
 class UrlManager(models.Manager):
     @staticmethod
     def _get_random_url_token():
@@ -41,7 +53,7 @@ class UrlManager(models.Manager):
         if conf.LOG_COLLISIONS:
             CollisionLog.objects.create(token=token)
 
-    def create_short_url(self, long_url, token=None):
+    def create_short_url(self, long_url, click_limit=None, token=None):
         """Create retrying on token collision
 
         Args:
@@ -51,8 +63,6 @@ class UrlManager(models.Manager):
         Returns:
             TYPE: bool
         """
-
-        OptionalSchemeURLValidator()(long_url)
         token = token or self._get_random_url_token()
 
         collision_free = False
@@ -65,7 +75,12 @@ class UrlManager(models.Manager):
                 self._on_token_collision(token)
                 token = self._get_random_url_token()
 
-        return self.create(token=token, long_url=long_url)
+        create_data = {"token": token, "long_url": long_url}
+
+        if click_limit:
+            create_data.update(click_limit=click_limit)
+
+        return self.create(**create_data)
 
     def get_long_url(self, token):
         """Fetch long url using token
@@ -95,23 +110,29 @@ class UrlManager(models.Manager):
             if conf.USE_CACHE:
                 cache.set(token, long_url, timeout=conf.CACHE_TIMEOUT_READ)
 
-            # ClickLog.objects.create(url_id=token)  # TODO Move probably to views
-
         return long_url
 
 
 class Url(models.Model):
     token = models.CharField(
-        max_length=conf.TOKEN_LENGTH_STR, primary_key=True, db_index=True
+        max_length=conf.TOKEN_LENGTH_STR,
+        primary_key=True,
+        db_index=True,
+        help_text="Type `random` or `r` to generate random token",
     )
-    long_url = models.CharField(
-        max_length=500, validators=[OptionalSchemeURLValidator()]
-    )
+    long_url = models.CharField(max_length=500, validators=[URLValidator()])
     create_date = models.DateTimeField(auto_now_add=True)
+    click_limit = models.IntegerField(
+        default=0, help_text="Remove url when this is reached"
+    )
     objects = UrlManager()
 
     def __str__(self):
         return self.token
+
+    @property
+    def short_url(self):
+        return conf.URL_FORMAT.format(token=self.token)
 
 
 @receiver(post_delete, sender=Url)
