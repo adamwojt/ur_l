@@ -147,15 +147,15 @@ See the [poetry docs](https://python-poetry.org/docs/) for information on how to
 The Dockerfile uses multi-stage builds to run lint before building the production stage. If linting fails the build will fail too.
 
 ### Linters that run on build:
-- [isort](https://pypi.org/project/isort/) -> config [here](.pyproject.yml)
-- [black](https://github.com/psf/black) -> config [here](.pyproject.yml)
+- [isort](https://pypi.org/project/isort/) -> config [here](pyproject.yml)
+- [black](https://github.com/psf/black) -> config [here](pyproject.yml)
 - [safety](https://pypi.org/project/safety/)
 
 Same commands as in [Dockerfile](Dockerfile) can be run in `poetry shell`
 
 **NOTES**:
 - To rebuild images, run `docker-compose build`
-- [.pyproject.yml](.pyproject.yml) and [poetry.lock](poetry.lock) are used for dependency caching
+- [pyproject.yml](pyproject.yml) and [poetry.lock](poetry.lock) are used for dependency caching
 
 ---
 
