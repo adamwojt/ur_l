@@ -25,8 +25,14 @@ See [.env.template file](.env.template) for possible options and defaults.
 
 ---
 ## API
-
 Interactive docs are available under `/api/docs`
+
+**how it works**
+
+Once Url is created (via api or admin) - it will redirect permanently from `/{token}` path to original `long_url`.
+URL can stay in high demand as backend will constantly refresh Redis cache to `CACHE_TIMEOUT_READ` settings.
+Cache is set at create too with `CACHE_TIMEOUT_READ` setting. Cache is updated/deleted on PUT or DELETE. 
+
 
 **list**
 ```
