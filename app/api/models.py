@@ -130,10 +130,6 @@ class Url(models.Model):
     def __str__(self):
         return self.token
 
-    @property
-    def short_url(self):
-        return conf.URL_FORMAT.format(token=self.token)
-
 
 @receiver(post_delete, sender=Url)
 def _url_post_delete(sender, instance, *args, **kwargs):

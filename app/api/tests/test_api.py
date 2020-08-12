@@ -23,10 +23,12 @@ from ..apps import ApiConfig as conf
 from ..models import Url
 
 
+DJANGO_TEST_SERVER_URL = "http://testserver/"
+
+
 @pytest.fixture
 def api_client():
     client = APIClient()
-
     yield client
 
 

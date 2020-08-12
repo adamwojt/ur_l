@@ -35,6 +35,3 @@ class ApiConfig(AppConfig):
 
     # Log token collisions for metrics
     LOG_COLLISIONS = os.environ.get("LOG_TOKEN_COLLISION") == "1"
-
-    DOMAIN = "localhost"
-    URL_FORMAT = f"{DOMAIN}:{os.environ.get('UR_L_PORT')}/{{token}}"
