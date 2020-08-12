@@ -28,4 +28,4 @@ def short_url(request, token):
     }
     ClickLog.objects.create(**click_log_data)
 
-    return redirect(check_and_update_url_schema(long_url), permanent=True)
+    return redirect(check_and_update_url_schema(long_url))

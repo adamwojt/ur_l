@@ -8,7 +8,7 @@ from .apps import ApiConfig as conf
 
 
 def _redirect_to_url_api_list_view(_):
-    return redirect("/" + conf.API_URL_PATH, permanent=False)
+    return redirect("/" + conf.API_URL_PATH)
 
 
 urlpatterns = [
