@@ -7,7 +7,6 @@ import pytest
 from django.core.cache import cache
 from django.http import (
     HttpResponseNotFound,
-    HttpResponsePermanentRedirect,
     HttpResponseRedirect,
 )
 from pytest_django.asserts import assertTemplateUsed
@@ -131,7 +130,7 @@ def test_api_workflow(api_client, django_assert_num_queries):
 
     for url in created:
         response = api_client.get(f"/{url['token']}")
-        assert isinstance(response, HttpResponsePermanentRedirect)
+        assert isinstance(response, HttpResponseRedirect)
         assert response.url == url["long_url"]
         assert Url.objects.get(token=url["token"]).clicks.count() == 1
 
@@ -141,7 +140,7 @@ def test_api_workflow(api_client, django_assert_num_queries):
 
     for _ in range(limit):
         response = api_client.get(f"/{with_limit['token']}")
-        assert isinstance(response, HttpResponsePermanentRedirect)
+        assert isinstance(response, HttpResponseRedirect)
         assert response.url == with_limit["long_url"]
 
     # Now we should get 404 - even cache should be empty here
