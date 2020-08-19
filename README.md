@@ -1,13 +1,15 @@
 ![CI](https://github.com/adamwojt/ur_l/workflows/Docker/badge.svg?branch=master&event=push)![Bandit](https://github.com/adamwojt/ur_l/workflows/Bandit%20Security/badge.svg?branch=master&event=push)
 
+[![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://timothycrosley.github.io/isort/)[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)[![Coverage](https://img.shields.io/badge/coverage-90%25%2B-brightgreen)](https://github.com/adamwojt/ur_l/actions)[![Safety](https://img.shields.io/badge/%20pyupio%20-safety-blue)](https://github.com/pyupio/safety)
+
 # UR_L shortener
 
 ### Requirements
 
-- [Docker >= 17.05](https://www.docker.com/)
-- [docker-compose >= 1.21.0](https://docs.docker.com/compose/)
-- [Python >= 3.8](https://www.python.org/downloads/release/python-381/)
-- [Poetry](https://github.com/python-poetry/poetry)
+- [![Docker >= 17.05](https://img.shields.io/badge/%20docker-%3E%3D%2017.05-blue)](https://www.docker.com/)
+- [![docker-compose >= 1.21.0](https://img.shields.io/badge/%20docker--compose-%3E%3D%201.21.0-blue)](https://docs.docker.com/compose/)
+- [![Python >= 3.8](https://img.shields.io/badge/python-%3E%3D%203.8-blue)](https://www.python.org/downloads/release/python-381/)
+- [![Poetry](https://img.shields.io/badge/poetry-1.0.10-blue)](https://github.com/python-poetry/poetry)
 
 ---
 **NOTE** - Run all commands from the project root
@@ -55,7 +57,7 @@ Request Body
 
 The request body should be a "application/json" encoded object, containing the following items.
 long_url (required)
-click_limit
+click_limit (optional, if set url is deleted after limit is reached)
 ```
 
 **read**
@@ -253,12 +255,13 @@ Percentage of the requests served within a certain time (ms)
 
 ![CI](https://github.com/adamwojt/ur_l/workflows/Docker/badge.svg?branch=master&event=push)![Bandit](https://github.com/adamwojt/ur_l/workflows/Bandit%20Security/badge.svg?branch=master&event=push)
 
+
 ### Current workflow
 
-- Build Docker Image (linters here)
-- Run everything
+- Build Docker Image (includes [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://timothycrosley.github.io/isort/)[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)[![Safety](https://img.shields.io/badge/%20pyupio%20-safety-blue)](https://github.com/pyupio/safety))
+- Run containers
 - Benchmark with [ab](https://en.wikipedia.org/wiki/ApacheBench)
-- Run tests (pass >= 90% covered )
+- Run tests (pass >= [![Coverage](https://img.shields.io/badge/coverage-90%25%2B-brightgreen)](https://github.com/adamwojt/ur_l/actions))
 - Push Docker Image
 
 ## Credits
