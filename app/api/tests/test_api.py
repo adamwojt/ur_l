@@ -9,6 +9,7 @@ from django.http import (
     HttpResponseNotFound,
     HttpResponseRedirect,
 )
+from django.contrib.auth.models import User
 from pytest_django.asserts import assertTemplateUsed
 from rest_framework.status import (
     HTTP_201_CREATED,
@@ -27,7 +28,9 @@ DJANGO_TEST_SERVER_URL = "http://testserver/"
 
 @pytest.fixture
 def api_client():
+    User.objects.create_user(username="test", password="test")
     client = APIClient()
+    client.login(username="test", password="test")
     yield client
 
 

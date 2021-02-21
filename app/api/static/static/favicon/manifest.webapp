@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "name": "basic-webpack-dev-enviroment",
+  "description": "",
+  "icons": {
+    "60": "/static/favicon/firefox_app_60x60.png",
+    "128": "/static/favicon/firefox_app_128x128.png",
+    "512": "/static/favicon/firefox_app_512x512.png"
+  },
+  "developer": {
+    "name": "Dalius",
+    "url": null
+  }
+}

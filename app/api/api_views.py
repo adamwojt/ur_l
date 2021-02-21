@@ -1,9 +1,15 @@
 from rest_framework import status
 from rest_framework.generics import GenericAPIView, ListAPIView
+from rest_framework.permissions import SAFE_METHODS, BasePermission, IsAuthenticated
 from rest_framework.response import Response
 
 from .models import Url
 from .serializers import UrlSerializer
+
+
+class IsPublic(BasePermission):
+    def has_permission(self, request, view):
+        return request.method in view.public_methods
 
 
 class UrlList(ListAPIView):
@@ -15,6 +21,8 @@ class UrlList(ListAPIView):
     Create a new short url.
     """
 
+    public_methods = ("POST", "OPTIONS", "HEAD")
+    permission_classes = [IsAuthenticated | IsPublic]
     queryset = Url.objects.all()
     serializer_class = UrlSerializer
 
@@ -38,6 +46,8 @@ class UrlDetail(GenericAPIView):
     Delete url and clear cache
     """
 
+    public_methods = SAFE_METHODS
+    permission_classes = [IsAuthenticated | IsPublic]
     lookup_field = "token"
     queryset = Url.objects.all()
     serializer_class = UrlSerializer

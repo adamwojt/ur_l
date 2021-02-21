@@ -1,5 +1,8 @@
 from django.shortcuts import redirect, render
+from django.views.decorators.http import require_http_methods
+from rest_framework import status
 
+from .api_views import UrlList
 from .helpers import check_and_update_url_schema
 from .models import ClickLog, Url
 
@@ -29,3 +32,8 @@ def short_url(request, token):
     ClickLog.objects.create(**click_log_data)
 
     return redirect(check_and_update_url_schema(long_url))
+
+
+@require_http_methods(["GET"])
+def shorten_url(request):
+    return render(request, "index.html")

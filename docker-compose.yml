@@ -1,6 +1,7 @@
 # ENV Variables required (no fallback):
 # DJANGO_SECRET_KEY
 # TARGET_ENV
+# UR_L_DOMAIN
 
 version: '3.4'
   
@@ -18,7 +19,7 @@ services:
   redis:
     image: redis:${REDIS_TAG:-latest}
   ur_l:
-    image: adamwojt/adamwojt:ur_l_${TARGET_ENV:?Target Environment}
+    image: adamwojt/adamwojt:ur_l_${TARGET_ENV:?Target Environment}_deploy
     build:
       dockerfile: ./python_docker/Dockerfile
       context: .
@@ -39,30 +40,18 @@ services:
       - NUM_GUNICORN_WORKERS=${NUM_GUNICORN_WORKERS:-4}
       - UR_L_PORT=${UR_L_PORT:-8000}
       - URL_USE_CACHE=${URL_USE_CACHE:-1}
+      - UR_L_DOMAIN=${UR_L_DOMAIN:?Domain}
     command: runserver
     depends_on:
       - postgres
       - redis
     volumes:
-      - static_volume:/app/staticfiles
+      - ./staticfiles:/app/staticfiles
     expose:
       - ${UR_L_PORT:-8000}
-  nginx:
-    image: adamwojt/adamwojt:ur_l_nginx
-    environment:
-      - UR_L_PORT=${UR_L_PORT:-8000}
-    build:
-      dockerfile: ./nginx_docker/Dockerfile
-      context: .
     ports:
-      - ${UR_L_PORT:-8000}:80
-    depends_on:
-      - ur_l
-    volumes:
-      - static_volume:/ur_l/staticfiles
+      - ${UR_L_PORT:-8000}:${UR_L_PORT:-8000}
 
 volumes:
   db-data:
-    driver: local
-  static_volume:
     driver: local

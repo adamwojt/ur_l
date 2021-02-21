@@ -12,7 +12,7 @@ def _redirect_to_url_api_list_view(_):
 
 
 urlpatterns = [
-    path("", _redirect_to_url_api_list_view, name="root"),
+    path("", views.shorten_url, name="root"),
     re_path(conf.SHORT_URL_PATH, never_cache(views.short_url), name="url_short"),
     path(conf.API_URL_PATH, api_views.UrlList.as_view(), name="url_list"),
     re_path(conf.API_TOKEN_PATH, api_views.UrlDetail.as_view(), name="url_get"),

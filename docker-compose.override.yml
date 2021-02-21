@@ -8,13 +8,9 @@ services:
   postgres:
     logging:
       driver: none
-    volumes:
-      - db-data_dev:/var/lib/postgresql/data
   redis:
     logging:
       driver: none
-    volumes:
-      - redis_data:/data
   ur_l:
     environment:
       - COV_FAIL_THRESHOLD=90
@@ -33,11 +29,5 @@ services:
     tty: true
     volumes:
       - ./app:/dev_app
-  nginx:
-    command: /bin/true
-
-volumes:
-  db-data_dev:
-    driver: local
-  redis_data:
-    driver: local
+  # nginx:
+  #   command: /bin/true
