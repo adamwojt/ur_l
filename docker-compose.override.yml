@@ -28,6 +28,6 @@ services:
       - "${UR_L_PORT:-8001}:${UR_L_PORT:-8001}"
     tty: true
     volumes:
-      - ./app:/dev_app
+      - ./app:/app
   # nginx:
   #   command: /bin/true

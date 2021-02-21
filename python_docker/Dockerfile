@@ -73,7 +73,6 @@ COPY --from=builder-base $VENV_PATH $VENV_PATH
 
 COPY ./app /app
 WORKDIR /app
-RUN mkdir staticfiles
 
 COPY ./python_docker/docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
