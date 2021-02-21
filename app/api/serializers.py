@@ -10,12 +10,7 @@ from .models import Url
 
 class ShortUrlField(serializers.CharField):
     def to_representation(self, value):
-        if not self.context.get("request"):
-            return value
-
-        return self.context["request"].build_absolute_uri(
-            reverse("url_short", kwargs={"token": value})
-        )
+        return f"oor.lu/{value}"
 
 
 class UrlSerializer(serializers.Serializer):
