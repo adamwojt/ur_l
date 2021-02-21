@@ -8,6 +8,8 @@
     <meta name="theme-color" content="#ffd571">
     <meta name="description" content="A light and fun app for shortening urls">
     <meta name="application-name" content="Oor.lu">
+    <meta name="author" content="Adam Wojtczak, Dalius Slavickas">
+    <meta name="keywords" content="url, shortener, JavaScript, HTML, CSS, Python, Django, PostgreSQL, Redis">
     <link rel="shortcut icon" href="/static/favicon/favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
@@ -79,7 +81,7 @@
     <meta name="msapplication-TileImage" content="/static/favicon/mstile-144x144.png">
     <meta name="msapplication-config" content="/static/favicon/browserconfig.xml">
     <link rel="yandex-tableau-widget" href="/static/favicon/yandex-browser-manifest.json">
-    <link href="static/main.474822e51013db3c9567.css" rel="stylesheet">
+    <link href="main.eaf9429c300b96638096.css" rel="stylesheet">
 </head>
 
 <body>
@@ -94,26 +96,39 @@
             <nav>
                 <ul class="footer__links">
                     <li class="footer__link-text" id="about-button">About</li>
-                    <li class="footer__link-text" id="more-button">More</li>
+                    <li class="footer__link-text" id="more-button">Support us</li>
                 </ul>
             </nav>
             <div class="modal" id="about-modal">
                 <div class="modal__header">
                     <h4 class="modal__title">About Oor.lu</h4><img src="static/images/d688027c63af7625f6550079aab76357.png"
                         alt="" class="modal__logo"></div>
-                <p>Oor.lu - because world needs another URL-shortener.</p>
-                <p>Backend by <a href="https://github.com/adamwojt/ur_l">Adam Wojtczak</a></p>
-                <p>Frontend by <a href="https://github.com/Daliuxas200/oorlu">Dalius Slavickas</a></p>
-                </div>
-            <div
-                class="modal" id="more-modal">
+                <p class="title">Backend:</p>
+                <p>Backend was created with <a href="https://www.django-rest-framework.org/">django-REST (Python)</a>                    It utilizes combined powers of <a href="https://www.postgresql.org/">PostgreSQL</a>                    and <a href="https://redis.io/">Redis cache</a> for improved
+                    performance. Requirments of the project can be found <a href="https://www.dropbox.com/s/2yqy7uvhjeb7f0i/URLShortener-DjangoTask.rst?dl=0">here</a>.</p>
+                <a
+                    class="link-button" href="https://github.com/adamwojt/ur_l" target="_blank">© Adam Wojtczak</a>
+                    <p class="title">Frontend:</p>
+                    <p>Front end was designed with simplicity and code independence
+                        in mind, requiring zero dependencies to run. This ensures
+                        the longevity and best possible performance of the app.
+                        Code optimization and packaging was achieved using WebPack
+                        module bundler.</p><a class="link-button" href="https://github.com/Daliuxas200/oorlu/"
+                        target="_blank">© Dalius Slavickas</a></div>
+            <div class="modal"
+                id="more-modal">
                 <div class="modal__header">
-                    <h4 class="modal__title">More info</h4><img src="static/images/d688027c63af7625f6550079aab76357.png"
+                    <h4 class="modal__title">Donate</h4><img src="static/images/d688027c63af7625f6550079aab76357.png"
                         alt="" class="modal__logo"></div>
-                <p>Done as part of Python programming exercise</p><a href="https://www.dropbox.com/s/2yqy7uvhjeb7f0i/URLShortener-DjangoTask.rst?dl=0" target="_blank">Task Description</a></div>
-    </footer>
+                <p>Any help is appreciated:</p>
+                <p class="title">Bitcoin:</p>1A7bNMZsds9MYDntWY58SjxUq3r2rYr7Gq
+                <p></p>
+                <p class="title">ETH:</p>0x79f6fdbb0f611fa50e559e1b452e02953808f842
+                <p></p>
+            </div>
+        </footer>
     </div>
-    <script src="static/main.04951e8b6ad3719c12c1.js"></script>
+    <script src="main.5f889976d4e3d1a6195b.js"></script>
 </body>
 
 </html>
