@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /api/urls/
+Sitemap: https://oor.lu/sitemap.xml

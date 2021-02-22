@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>{% block title %}oor.lu - URL shortener.{% endblock %}</title>
+    <title>{% block title %}oor.lu URL shortener - short links for free.{% endblock %}</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <meta name="theme-color" content="#ffd571">
-    <meta name="description" content="A light and fun url shortener built with Django, Python and REST framework.">
+    <meta name="description" content="Free and fast url shortener to create perfect URLs for you. Shorten long urls to share on social media. API Built with Django, Python and REST framework.">
     <meta name="application-name" content="oor.lu">
     <meta name="author" content="Adam Wojtczak, Dalius Slavickas">
-    <meta name="keywords" content="url, shortener, JavaScript, HTML, CSS, Python, Django, PostgreSQL, Redis">
+    <meta name="keywords" content="url shortener, link, bitly, tinyurl, api, branded urls, links shortener, tiny url, short url, short link, links shortening, url traffic stats, url tracking, free url shortener, custom url shortener, shortening url, shorten url, shorten links, url, link, url redirect, shorter link, customize url, customize link, url shortener no ads, url shortener without ads, click stats, cuttly">
     <link rel="shortcut icon" href="/static/favicon/favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
@@ -91,11 +91,20 @@
     <meta name="twitter:image" content="http://oor.lu/static/images/square.png">
     <link rel="yandex-tableau-widget" href="/static/favicon/yandex-browser-manifest.json">
     <link href="static/main.eaf9429c300b96638096.css" rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CV4F052XKL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-CV4F052XKL');
+    </script>
 </head>
 
 <body>
     <div class="page">
-        <main class="main" id="main"><img src="static/images/76ddeb0c9b3d0b23a46d443b4a49d49b.svg" alt="" class="main__logo">
+        <main class="main" id="main"><img src="static/images/76ddeb0c9b3d0b23a46d443b4a49d49b.svg" alt="Logo" id="logo" class="main__logo">
+	<h1 style="font-size: 1px; color: #ffd571;">Short links are free with oor.lu url shortener.</h1>
 	{% block content %}
             <form
                 action="" class="main__form" id="main-form"><span class="main__url-input-wrapper"><input class="main__url-input" type="url" name="url"><div class="main__url-input-cutoff"></div></span>
@@ -112,10 +121,10 @@
             </nav>
             <div class="modal" id="about-modal">
                 <div class="modal__header">
-                    <h4 class="modal__title">About Oor.lu</h4><img src="static/images/d688027c63af7625f6550079aab76357.png"
-                        alt="" class="modal__logo"></div>
+                    <h4 class="modal__title">About oor.lu - free url shortener.</h4><img src="static/images/d688027c63af7625f6550079aab76357.png"
+                        alt="oor.lu" class="modal__logo"></div>
                 <p class="title">Backend:</p>
-                <p>Backend was created with <a href="https://www.django-rest-framework.org/">django-REST (Python)</a>                    It utilizes combined powers of <a href="https://www.postgresql.org/">PostgreSQL</a>                    and <a href="https://redis.io/">Redis cache</a> for improved
+		<p>This url shortener was created with <a href="https://www.django-rest-framework.org/">django-REST (Python)</a>                    It utilizes combined powers of <a href="https://www.postgresql.org/">PostgreSQL</a>                    and <a href="https://redis.io/">Redis cache</a> for improved
                     performance. Requirments of the project can be found <a href="https://www.dropbox.com/s/2yqy7uvhjeb7f0i/URLShortener-DjangoTask.rst?dl=0">here</a>.</p>
                 <a
                     class="link-button" href="https://github.com/adamwojt/ur_l" target="_blank">© Adam Wojtczak</a>
@@ -130,8 +139,8 @@
                 id="more-modal">
                 <div class="modal__header">
                     <h4 class="modal__title">Donate</h4><img src="static/images/d688027c63af7625f6550079aab76357.png"
-                        alt="" class="modal__logo"></div>
-                <p>Any help is appreciated:</p>
+                        alt="oor.lu" class="modal__logo"></div>
+                <p>oor.lu will always be free. Donations are welcome to help us with hosting:</p>
                 <p class="title">Bitcoin:</p>1A7bNMZsds9MYDntWY58SjxUq3r2rYr7Gq
                 <p></p>
                 <p class="title">ETH:</p>0x79f6fdbb0f611fa50e559e1b452e02953808f842

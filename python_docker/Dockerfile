@@ -58,12 +58,6 @@ RUN chmod +x /docker-entrypoint.sh
 EXPOSE 8000
 ENTRYPOINT /docker-entrypoint.sh $0 $@
 
-# 'lint' stage runs black, isort, safety
-FROM development AS lint
-COPY app ./app
-RUN black --config $PYSETUP_PATH/pyproject.toml --check app
-RUN isort --settings-path $PYSETUP_PATH/pyproject.toml --recursive --check-only
-
 # 'production' stage uses the clean 'python-base' stage and copyies
 # in only our runtime deps that were installed in the 'builder-base'
 FROM python-base as production
