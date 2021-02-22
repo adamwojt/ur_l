@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -91,6 +91,7 @@
     <meta name="twitter:image" content="http://oor.lu/static/images/square.png">
     <link rel="yandex-tableau-widget" href="/static/favicon/yandex-browser-manifest.json">
     <link href="static/main.eaf9429c300b96638096.css" rel="stylesheet">
+    <link rel="canonical" href="https://oor.lu" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CV4F052XKL"></script>
     <script>
@@ -107,13 +108,14 @@
 
 <body>
     <div class="page">
-        <main class="main" id="main"><img src="static/images/76ddeb0c9b3d0b23a46d443b4a49d49b.svg" alt="Logo"
-                id="logo" class="main__logo">
-            <h1 style="font-size: 1px; color: #ffd571;">Short links are free with oor.lu url shortener.</h1>
-            {% block content %}
-            <form action="" class="main__form" id="main-form"><span class="main__url-input-wrapper"><input class="main__url-input" type="url" name="url"><div class="main__url-input-cutoff"></div></span>
-                <input type="submit" class="main__button active" value="submit"></form>
-            {% endblock %}
+        <a href="/" title="Home">
+            <main class="main" id="main"><img src="static/images/76ddeb0c9b3d0b23a46d443b4a49d49b.svg" alt="Logo" id="logo" class="main__logo"></a>
+        <h1 style="font-size: 1px; color: #ffd571;">Short links are free with oor.lu url shortener.</h1>
+        <h2 style="font-size: 1px; color: #ffd571;">oor.lu link shortener is fast, free, easy to use and without ads. Works great for facebook, instagram, linkedin and more.</h2>
+        {% block content %}
+        <form action="" class="main__form" id="main-form"><span class="main__url-input-wrapper"><input class="main__url-input" type="url" name="url"><div class="main__url-input-cutoff"></div></span>
+            <input type="submit" class="main__button active" value="submit"></form>
+        {% endblock %}
         </main>
         <footer class="footer">
             <nav>
@@ -141,16 +143,16 @@
                     mind, requiring zero dependencies to run. This ensures the
                     longevity and best possible performance of the app. Code optimization
                     and packaging was achieved using WebPack module bundler.</p>
-                <a
-                    class="link-button" href="https://github.com/Daliuxas200/oorlu/"
-                    title="Dalius Slavickas" target="_blank">© Dalius Slavickas</a>
+                <a class="link-button" href="https://github.com/Daliuxas200/oorlu/" title="Dalius Slavickas"
+                    target="_blank">© Dalius Slavickas</a>
             </div>
             <div class="modal" id="more-modal">
                 <div class="modal__header">
                     <h4 class="modal__title">Donate</h4><img src="static/images/d688027c63af7625f6550079aab76357.png"
                         alt="oor.lu" class="modal__logo"></div>
                 <p>oor.lu will always be free. Donations are welcome to help us with
-                    hosting:</p>
+                    hosting:
+                </p>
                 <p class="title">Bitcoin:</p>1A7bNMZsds9MYDntWY58SjxUq3r2rYr7Gq
                 <p></p>
                 <p class="title">ETH:</p>0x79f6fdbb0f611fa50e559e1b452e02953808f842
