@@ -94,23 +94,26 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CV4F052XKL"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-CV4F052XKL');
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag()
+        {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-CV4F052XKL');
     </script>
 </head>
 
 <body>
     <div class="page">
-        <main class="main" id="main"><img src="static/images/76ddeb0c9b3d0b23a46d443b4a49d49b.svg" alt="Logo" id="logo" class="main__logo">
-	<h1 style="font-size: 1px; color: #ffd571;">Short links are free with oor.lu url shortener.</h1>
-	{% block content %}
-            <form
-                action="" class="main__form" id="main-form"><span class="main__url-input-wrapper"><input class="main__url-input" type="url" name="url"><div class="main__url-input-cutoff"></div></span>
-                <input
-                    type="submit" class="main__button active" value="submit"></form>
-	{% endblock %}
+        <main class="main" id="main"><img src="static/images/76ddeb0c9b3d0b23a46d443b4a49d49b.svg" alt="Logo"
+                id="logo" class="main__logo">
+            <h1 style="font-size: 1px; color: #ffd571;">Short links are free with oor.lu url shortener.</h1>
+            {% block content %}
+            <form action="" class="main__form" id="main-form"><span class="main__url-input-wrapper"><input class="main__url-input" type="url" name="url"><div class="main__url-input-cutoff"></div></span>
+                <input type="submit" class="main__button active" value="submit"></form>
+            {% endblock %}
         </main>
         <footer class="footer">
             <nav>
@@ -124,23 +127,30 @@
                     <h4 class="modal__title">About oor.lu - free url shortener.</h4><img src="static/images/d688027c63af7625f6550079aab76357.png"
                         alt="oor.lu" class="modal__logo"></div>
                 <p class="title">Backend:</p>
-		<p>This url shortener was created with <a href="https://www.django-rest-framework.org/">django-REST (Python)</a>                    It utilizes combined powers of <a href="https://www.postgresql.org/">PostgreSQL</a>                    and <a href="https://redis.io/">Redis cache</a> for improved
-                    performance. Requirments of the project can be found <a href="https://www.dropbox.com/s/2yqy7uvhjeb7f0i/URLShortener-DjangoTask.rst?dl=0">here</a>.</p>
+                <p>This url shortener was created with <a href="https://www.django-rest-framework.org/"
+                        title="Django REST" target="_blank">django-REST (Python)</a>.
+                    It utilizes combined powers of <a href="https://www.postgresql.org/"
+                        title="PostgreSQL" target="_blank">PostgreSQL</a> and <a href="https://redis.io/"
+                        title="Redis" target="_blank">Redis cache</a> for improved
+                    performance. Requirments of the project can be found <a href="https://www.dropbox.com/s/2yqy7uvhjeb7f0i/URLShortener-DjangoTask.rst?dl=0"
+                        title="Project Requirments" target="_blank">here</a>.</p>
+                <a class="link-button" href="https://github.com/adamwojt/ur_l" title="Adam Wojtczak"
+                    target="_blank">© Adam Wojtczak</a>
+                <p class="title">Frontend:</p>
+                <p>Front end was designed with simplicity and code independence in
+                    mind, requiring zero dependencies to run. This ensures the
+                    longevity and best possible performance of the app. Code optimization
+                    and packaging was achieved using WebPack module bundler.</p>
                 <a
-                    class="link-button" href="https://github.com/adamwojt/ur_l" target="_blank">© Adam Wojtczak</a>
-                    <p class="title">Frontend:</p>
-                    <p>Front end was designed with simplicity and code independence
-                        in mind, requiring zero dependencies to run. This ensures
-                        the longevity and best possible performance of the app.
-                        Code optimization and packaging was achieved using WebPack
-                        module bundler.</p><a class="link-button" href="https://github.com/Daliuxas200/oorlu/"
-                        target="_blank">© Dalius Slavickas</a></div>
-            <div class="modal"
-                id="more-modal">
+                    class="link-button" href="https://github.com/Daliuxas200/oorlu/"
+                    title="Dalius Slavickas" target="_blank">© Dalius Slavickas</a>
+            </div>
+            <div class="modal" id="more-modal">
                 <div class="modal__header">
                     <h4 class="modal__title">Donate</h4><img src="static/images/d688027c63af7625f6550079aab76357.png"
                         alt="oor.lu" class="modal__logo"></div>
-                <p>oor.lu will always be free. Donations are welcome to help us with hosting:</p>
+                <p>oor.lu will always be free. Donations are welcome to help us with
+                    hosting:</p>
                 <p class="title">Bitcoin:</p>1A7bNMZsds9MYDntWY58SjxUq3r2rYr7Gq
                 <p></p>
                 <p class="title">ETH:</p>0x79f6fdbb0f611fa50e559e1b452e02953808f842
