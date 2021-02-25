@@ -153,9 +153,11 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
     ],
     'DEFAULT_THROTTLE_CLASSES': [
-        'rest_framework.throttling.AnonRateThrottle',
+        'api.throttle.BurstRateThrottle',
+        'api.throttle.SustainedRateThrottle',
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '100/day',
+        'anon_burst': '30/minute',
+        'anon_sustained': '500/day',
     },
 }
