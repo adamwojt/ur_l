@@ -7,15 +7,13 @@ version: '3.4'
   
 services:
   postgres:
-    image: postgres:${POSTGRES_TAG:-latest}
+    image: postgres:latest
     environment:
-      - POSTGRES_USER=${POSTGRES_USER:-postgres}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
-      - POSTGRES_DB=${POSTGRES_DB:-postgres}
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
     volumes:
       - db-data:/var/lib/postgresql/data
-    ports:
-      - ${POSTGRES_PORT:-5432}:${POSTGRES_PORT:-5432}
   redis:
     image: redis:${REDIS_TAG:-latest}
   ur_l:
