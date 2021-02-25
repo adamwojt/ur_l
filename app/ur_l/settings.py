@@ -161,3 +161,18 @@ REST_FRAMEWORK = {
         'anon_sustained': '500/day',
     },
 }
+
+# SENTRY
+SENTRY_DNS = os.getenv("SENTRY_DNS")
+if SENTRY_DNS:
+    import sentry_sdk
+    from sentry_sdk.integrations.django import DjangoIntegration
+
+    sentry_sdk.init(
+        dsn=SENTRY_DNS,
+        integrations=[DjangoIntegration()],
+
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True
+    )

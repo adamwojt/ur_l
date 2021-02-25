@@ -1,38 +1,37 @@
 [[package]]
-category = "dev"
-description = "A small Python module for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
 name = "appdirs"
+version = "1.4.4"
+description = "A small Python module for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
+category = "dev"
 optional = false
 python-versions = "*"
-version = "1.4.4"
 
 [[package]]
-category = "main"
-description = "ASGI specs, helper code, and adapters"
 name = "asgiref"
+version = "3.2.10"
+description = "ASGI specs, helper code, and adapters"
+category = "main"
 optional = false
 python-versions = ">=3.5"
-version = "3.2.10"
 
 [package.extras]
 tests = ["pytest", "pytest-asyncio"]
 
 [[package]]
-category = "main"
-description = "Atomic file writes."
-marker = "sys_platform == \"win32\""
 name = "atomicwrites"
+version = "1.4.0"
+description = "Atomic file writes."
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "1.4.0"
 
 [[package]]
-category = "main"
-description = "Classes Without Boilerplate"
 name = "attrs"
+version = "19.3.0"
+description = "Classes Without Boilerplate"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "19.3.0"
 
 [package.extras]
 azure-pipelines = ["coverage", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "zope.interface", "pytest-azurepipelines"]
@@ -41,12 +40,12 @@ docs = ["sphinx", "zope.interface"]
 tests = ["coverage", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "zope.interface"]
 
 [[package]]
-category = "dev"
-description = "The uncompromising code formatter."
 name = "black"
+version = "19.10b0"
+description = "The uncompromising code formatter."
+category = "dev"
 optional = false
 python-versions = ">=3.6"
-version = "19.10b0"
 
 [package.dependencies]
 appdirs = "*"
@@ -61,45 +60,44 @@ typed-ast = ">=1.4.0"
 d = ["aiohttp (>=3.3.2)", "aiohttp-cors"]
 
 [[package]]
-category = "main"
-description = "Python package for providing Mozilla's CA Bundle."
 name = "certifi"
-optional = false
-python-versions = "*"
 version = "2020.6.20"
+description = "Python package for providing Mozilla's CA Bundle."
+category = "main"
+optional = false
+python-versions = "*"
 
 [[package]]
-category = "main"
-description = "Universal encoding detector for Python 2 and 3"
 name = "chardet"
-optional = false
-python-versions = "*"
 version = "3.0.4"
-
-[[package]]
-category = "dev"
-description = "Composable command line interface toolkit"
-name = "click"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-version = "7.1.2"
-
-[[package]]
+description = "Universal encoding detector for Python 2 and 3"
 category = "main"
-description = "Cross-platform colored terminal text."
-marker = "sys_platform == \"win32\""
-name = "colorama"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-version = "0.4.3"
-
-[[package]]
-category = "main"
-description = "Python client library for Core API."
-name = "coreapi"
 optional = false
 python-versions = "*"
+
+[[package]]
+name = "click"
+version = "7.1.2"
+description = "Composable command line interface toolkit"
+category = "dev"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+
+[[package]]
+name = "colorama"
+version = "0.4.3"
+description = "Cross-platform colored terminal text."
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+
+[[package]]
+name = "coreapi"
 version = "2.3.3"
+description = "Python client library for Core API."
+category = "main"
+optional = false
+python-versions = "*"
 
 [package.dependencies]
 coreschema = "*"
@@ -108,39 +106,37 @@ requests = "*"
 uritemplate = "*"
 
 [[package]]
-category = "main"
-description = "Core Schema."
 name = "coreschema"
+version = "0.0.4"
+description = "Core Schema."
+category = "main"
 optional = false
 python-versions = "*"
-version = "0.0.4"
 
 [package.dependencies]
 jinja2 = "*"
 
 [[package]]
-category = "main"
-description = "Code coverage measurement for Python"
 name = "coverage"
+version = "5.0.3"
+description = "Code coverage measurement for Python"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
-version = "5.0.3"
 
 [package.dependencies]
-[package.dependencies.toml]
-optional = true
-version = "*"
+toml = {version = "*", optional = true, markers = "extra == \"toml\""}
 
 [package.extras]
 toml = ["toml"]
 
 [[package]]
-category = "main"
-description = "A high-level Python Web framework that encourages rapid development and clean, pragmatic design."
 name = "django"
+version = "3.1"
+description = "A high-level Python Web framework that encourages rapid development and clean, pragmatic design."
+category = "main"
 optional = false
 python-versions = ">=3.6"
-version = "3.1"
 
 [package.dependencies]
 asgiref = ">=3.2.10,<3.3.0"
@@ -152,35 +148,35 @@ argon2 = ["argon2-cffi (>=16.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
-category = "main"
-description = "Full featured redis cache backend for Django."
 name = "django-redis"
+version = "4.12.1"
+description = "Full featured redis cache backend for Django."
+category = "main"
 optional = false
 python-versions = ">=3.5"
-version = "4.12.1"
 
 [package.dependencies]
 Django = ">=2.2"
 redis = ">=3.0.0"
 
 [[package]]
-category = "main"
-description = "Web APIs for Django, made easy."
 name = "djangorestframework"
+version = "3.11.1"
+description = "Web APIs for Django, made easy."
+category = "main"
 optional = false
 python-versions = ">=3.5"
-version = "3.11.1"
 
 [package.dependencies]
 django = ">=1.11"
 
 [[package]]
-category = "dev"
-description = "A parser for Python dependency files"
 name = "dparse"
+version = "0.5.1"
+description = "A parser for Python dependency files"
+category = "dev"
 optional = false
 python-versions = ">=3.5"
-version = "0.5.1"
 
 [package.dependencies]
 packaging = "*"
@@ -191,12 +187,12 @@ toml = "*"
 pipenv = ["pipenv"]
 
 [[package]]
-category = "main"
-description = "Fake implementation of redis API for testing purposes."
 name = "fakeredis"
+version = "1.4.2"
+description = "Fake implementation of redis API for testing purposes."
+category = "main"
 optional = false
 python-versions = ">=3.5"
-version = "1.4.2"
 
 [package.dependencies]
 redis = "<3.6.0"
@@ -208,15 +204,12 @@ aioredis = ["aioredis"]
 lua = ["lupa"]
 
 [[package]]
-category = "main"
-description = "WSGI HTTP Server for UNIX"
 name = "gunicorn"
+version = "20.0.4"
+description = "WSGI HTTP Server for UNIX"
+category = "main"
 optional = false
 python-versions = ">=3.4"
-version = "20.0.4"
-
-[package.dependencies]
-setuptools = ">=3.0"
 
 [package.extras]
 eventlet = ["eventlet (>=0.9.7)"]
@@ -225,25 +218,23 @@ setproctitle = ["setproctitle"]
 tornado = ["tornado (>=0.2)"]
 
 [[package]]
-category = "main"
-description = "Internationalized Domain Names in Applications (IDNA)"
 name = "idna"
+version = "2.10"
+description = "Internationalized Domain Names in Applications (IDNA)"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "2.10"
 
 [[package]]
-category = "dev"
-description = "A Python utility / library to sort Python imports."
 name = "isort"
+version = "4.3.21"
+description = "A Python utility / library to sort Python imports."
+category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "4.3.21"
 
 [package.dependencies]
-[package.dependencies.toml]
-optional = true
-version = "*"
+toml = {version = "*", optional = true, markers = "extra == \"pyproject\""}
 
 [package.extras]
 pipfile = ["pipreqs", "requirementslib"]
@@ -252,20 +243,20 @@ requirements = ["pipreqs", "pip-api"]
 xdg_home = ["appdirs (>=1.4.0)"]
 
 [[package]]
-category = "main"
-description = "Simple immutable types for python."
 name = "itypes"
+version = "1.2.0"
+description = "Simple immutable types for python."
+category = "main"
 optional = false
 python-versions = "*"
-version = "1.2.0"
 
 [[package]]
-category = "main"
-description = "A very fast and expressive template engine."
 name = "jinja2"
+version = "2.11.2"
+description = "A very fast and expressive template engine."
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-version = "2.11.2"
 
 [package.dependencies]
 MarkupSafe = ">=0.23"
@@ -274,88 +265,88 @@ MarkupSafe = ">=0.23"
 i18n = ["Babel (>=0.8)"]
 
 [[package]]
-category = "main"
-description = "Safely add untrusted strings to HTML/XML markup."
 name = "markupsafe"
+version = "1.1.1"
+description = "Safely add untrusted strings to HTML/XML markup."
+category = "main"
 optional = false
 python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
-version = "1.1.1"
 
 [[package]]
-category = "main"
-description = "More routines for operating on iterables, beyond itertools"
 name = "more-itertools"
+version = "8.4.0"
+description = "More routines for operating on iterables, beyond itertools"
+category = "main"
 optional = false
 python-versions = ">=3.5"
-version = "8.4.0"
 
 [[package]]
-category = "main"
-description = "Core utilities for Python packages"
 name = "packaging"
+version = "20.4"
+description = "Core utilities for Python packages"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "20.4"
 
 [package.dependencies]
 pyparsing = ">=2.0.2"
 six = "*"
 
 [[package]]
-category = "dev"
-description = "Utility library for gitignore style pattern matching of file paths."
 name = "pathspec"
+version = "0.8.0"
+description = "Utility library for gitignore style pattern matching of file paths."
+category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-version = "0.8.0"
 
 [[package]]
-category = "main"
-description = "plugin and hook calling mechanisms for python"
 name = "pluggy"
+version = "0.13.1"
+description = "plugin and hook calling mechanisms for python"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "0.13.1"
 
 [package.extras]
 dev = ["pre-commit", "tox"]
 
 [[package]]
-category = "main"
-description = "psycopg2 - Python-PostgreSQL Database Adapter"
 name = "psycopg2-binary"
+version = "2.8.5"
+description = "psycopg2 - Python-PostgreSQL Database Adapter"
+category = "main"
 optional = false
 python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
-version = "2.8.5"
 
 [[package]]
-category = "main"
-description = "library with cross-python path, ini-parsing, io, code, log facilities"
 name = "py"
+version = "1.9.0"
+description = "library with cross-python path, ini-parsing, io, code, log facilities"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "1.9.0"
 
 [[package]]
-category = "main"
-description = "Python parsing module"
 name = "pyparsing"
+version = "2.4.7"
+description = "Python parsing module"
+category = "main"
 optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
-version = "2.4.7"
 
 [[package]]
-category = "main"
-description = "pytest: simple powerful testing with Python"
 name = "pytest"
+version = "5.3.5"
+description = "pytest: simple powerful testing with Python"
+category = "main"
 optional = false
 python-versions = ">=3.5"
-version = "5.3.5"
 
 [package.dependencies]
-atomicwrites = ">=1.0"
+atomicwrites = {version = ">=1.0", markers = "sys_platform == \"win32\""}
 attrs = ">=17.4.0"
-colorama = "*"
+colorama = {version = "*", markers = "sys_platform == \"win32\""}
 more-itertools = ">=4.0.0"
 packaging = "*"
 pluggy = ">=0.12,<1.0"
@@ -363,31 +354,31 @@ py = ">=1.5.0"
 wcwidth = "*"
 
 [package.extras]
-checkqa-mypy = ["mypy (v0.761)"]
+checkqa-mypy = ["mypy (==v0.761)"]
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xmlschema"]
 
 [[package]]
-category = "main"
-description = "Pytest plugin for measuring coverage."
 name = "pytest-cov"
+version = "2.10.0"
+description = "Pytest plugin for measuring coverage."
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-version = "2.10.0"
 
 [package.dependencies]
 coverage = ">=4.4"
 pytest = ">=4.6"
 
 [package.extras]
-testing = ["fields", "hunter", "process-tests (2.0.2)", "six", "pytest-xdist", "virtualenv"]
+testing = ["fields", "hunter", "process-tests (==2.0.2)", "six", "pytest-xdist", "virtualenv"]
 
 [[package]]
-category = "main"
-description = "A Django plugin for pytest."
 name = "pytest-django"
+version = "3.9.0"
+description = "A Django plugin for pytest."
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "3.9.0"
 
 [package.dependencies]
 pytest = ">=3.6"
@@ -397,47 +388,47 @@ docs = ["sphinx", "sphinx-rtd-theme"]
 testing = ["django", "django-configurations (>=2.0)", "six"]
 
 [[package]]
-category = "main"
-description = "World timezone definitions, modern and historical"
 name = "pytz"
+version = "2020.1"
+description = "World timezone definitions, modern and historical"
+category = "main"
 optional = false
 python-versions = "*"
-version = "2020.1"
 
 [[package]]
-category = "dev"
-description = "YAML parser and emitter for Python"
 name = "pyyaml"
+version = "5.3.1"
+description = "YAML parser and emitter for Python"
+category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-version = "5.3.1"
 
 [[package]]
-category = "main"
-description = "Python client for Redis key-value store"
 name = "redis"
+version = "3.5.3"
+description = "Python client for Redis key-value store"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-version = "3.5.3"
 
 [package.extras]
 hiredis = ["hiredis (>=0.1.3)"]
 
 [[package]]
-category = "dev"
-description = "Alternative regular expression module, to replace re."
 name = "regex"
+version = "2020.7.14"
+description = "Alternative regular expression module, to replace re."
+category = "dev"
 optional = false
 python-versions = "*"
-version = "2020.7.14"
 
 [[package]]
-category = "main"
-description = "Python HTTP for Humans."
 name = "requests"
+version = "2.24.0"
+description = "Python HTTP for Humans."
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-version = "2.24.0"
 
 [package.dependencies]
 certifi = ">=2017.4.17"
@@ -447,95 +438,123 @@ urllib3 = ">=1.21.1,<1.25.0 || >1.25.0,<1.25.1 || >1.25.1,<1.26"
 
 [package.extras]
 security = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)"]
-socks = ["PySocks (>=1.5.6,<1.5.7 || >1.5.7)", "win-inet-pton"]
+socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
 
 [[package]]
-category = "dev"
-description = "Checks installed dependencies for known vulnerabilities."
 name = "safety"
+version = "1.9.0"
+description = "Checks installed dependencies for known vulnerabilities."
+category = "dev"
 optional = false
 python-versions = ">=3.5"
-version = "1.9.0"
 
 [package.dependencies]
 Click = ">=6.0"
 dparse = ">=0.5.1"
 packaging = "*"
 requests = "*"
-setuptools = "*"
 
 [[package]]
+name = "sentry-sdk"
+version = "0.20.3"
+description = "Python client for Sentry (https://sentry.io)"
 category = "main"
-description = "Python 2 and 3 compatibility utilities"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+certifi = "*"
+urllib3 = ">=1.10.0"
+
+[package.extras]
+aiohttp = ["aiohttp (>=3.5)"]
+beam = ["apache-beam (>=2.12)"]
+bottle = ["bottle (>=0.12.13)"]
+celery = ["celery (>=3)"]
+chalice = ["chalice (>=1.16.0)"]
+django = ["django (>=1.8)"]
+falcon = ["falcon (>=1.4)"]
+flask = ["flask (>=0.11)", "blinker (>=1.1)"]
+pure_eval = ["pure-eval", "executing", "asttokens"]
+pyspark = ["pyspark (>=2.4.4)"]
+rq = ["rq (>=0.6)"]
+sanic = ["sanic (>=0.8)"]
+sqlalchemy = ["sqlalchemy (>=1.2)"]
+tornado = ["tornado (>=5)"]
+
+[[package]]
 name = "six"
+version = "1.15.0"
+description = "Python 2 and 3 compatibility utilities"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
-version = "1.15.0"
 
 [[package]]
-category = "main"
-description = "Sorted Containers -- Sorted List, Sorted Dict, Sorted Set"
 name = "sortedcontainers"
-optional = false
-python-versions = "*"
 version = "2.2.2"
+description = "Sorted Containers -- Sorted List, Sorted Dict, Sorted Set"
+category = "main"
+optional = false
+python-versions = "*"
 
 [[package]]
-category = "main"
-description = "Non-validating SQL parser"
 name = "sqlparse"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "0.3.1"
-
-[[package]]
+description = "Non-validating SQL parser"
 category = "main"
-description = "Python Library for Tom's Obvious, Minimal Language"
-name = "toml"
-optional = false
-python-versions = "*"
-version = "0.10.1"
-
-[[package]]
-category = "dev"
-description = "a fork of Python 2 and 3 ast modules with type comment support"
-name = "typed-ast"
-optional = false
-python-versions = "*"
-version = "1.4.1"
-
-[[package]]
-category = "main"
-description = "URI templates"
-name = "uritemplate"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "3.0.1"
 
 [[package]]
+name = "toml"
+version = "0.10.1"
+description = "Python Library for Tom's Obvious, Minimal Language"
 category = "main"
-description = "HTTP library with thread-safe connection pooling, file post, and more."
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "typed-ast"
+version = "1.4.1"
+description = "a fork of Python 2 and 3 ast modules with type comment support"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "uritemplate"
+version = "3.0.1"
+description = "URI templates"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+
+[[package]]
 name = "urllib3"
+version = "1.25.10"
+description = "HTTP library with thread-safe connection pooling, file post, and more."
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
-version = "1.25.10"
 
 [package.extras]
 brotli = ["brotlipy (>=0.6.0)"]
 secure = ["certifi", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "pyOpenSSL (>=0.14)", "ipaddress"]
-socks = ["PySocks (>=1.5.6,<1.5.7 || >1.5.7,<2.0)"]
+socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 
 [[package]]
-category = "main"
-description = "Measures the displayed width of unicode strings in a terminal"
 name = "wcwidth"
+version = "0.2.5"
+description = "Measures the displayed width of unicode strings in a terminal"
+category = "main"
 optional = false
 python-versions = "*"
-version = "0.2.5"
 
 [metadata]
-content-hash = "52a037833c7d7c69c51dad828004f5267fd853e7410eaeb4693bdf7f0f2c2cbf"
+lock-version = "1.1"
 python-versions = "^3.8"
+content-hash = "cde2906a7a3767da1bd32234ed7df59b722e30879002aa908b23ea428e2df110"
 
 [metadata.files]
 appdirs = [
@@ -674,20 +693,39 @@ markupsafe = [
     {file = "MarkupSafe-1.1.1-cp35-cp35m-win32.whl", hash = "sha256:6dd73240d2af64df90aa7c4e7481e23825ea70af4b4922f8ede5b9e35f78a3b1"},
     {file = "MarkupSafe-1.1.1-cp35-cp35m-win_amd64.whl", hash = "sha256:9add70b36c5666a2ed02b43b335fe19002ee5235efd4b8a89bfcf9005bebac0d"},
     {file = "MarkupSafe-1.1.1-cp36-cp36m-macosx_10_6_intel.whl", hash = "sha256:24982cc2533820871eba85ba648cd53d8623687ff11cbb805be4ff7b4c971aff"},
+    {file = "MarkupSafe-1.1.1-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:d53bc011414228441014aa71dbec320c66468c1030aae3a6e29778a3382d96e5"},
     {file = "MarkupSafe-1.1.1-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:00bc623926325b26bb9605ae9eae8a215691f33cae5df11ca5424f06f2d1f473"},
     {file = "MarkupSafe-1.1.1-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:717ba8fe3ae9cc0006d7c451f0bb265ee07739daf76355d06366154ee68d221e"},
+    {file = "MarkupSafe-1.1.1-cp36-cp36m-manylinux2010_i686.whl", hash = "sha256:3b8a6499709d29c2e2399569d96719a1b21dcd94410a586a18526b143ec8470f"},
+    {file = "MarkupSafe-1.1.1-cp36-cp36m-manylinux2010_x86_64.whl", hash = "sha256:84dee80c15f1b560d55bcfe6d47b27d070b4681c699c572af2e3c7cc90a3b8e0"},
+    {file = "MarkupSafe-1.1.1-cp36-cp36m-manylinux2014_aarch64.whl", hash = "sha256:b1dba4527182c95a0db8b6060cc98ac49b9e2f5e64320e2b56e47cb2831978c7"},
     {file = "MarkupSafe-1.1.1-cp36-cp36m-win32.whl", hash = "sha256:535f6fc4d397c1563d08b88e485c3496cf5784e927af890fb3c3aac7f933ec66"},
     {file = "MarkupSafe-1.1.1-cp36-cp36m-win_amd64.whl", hash = "sha256:b1282f8c00509d99fef04d8ba936b156d419be841854fe901d8ae224c59f0be5"},
     {file = "MarkupSafe-1.1.1-cp37-cp37m-macosx_10_6_intel.whl", hash = "sha256:8defac2f2ccd6805ebf65f5eeb132adcf2ab57aa11fdf4c0dd5169a004710e7d"},
+    {file = "MarkupSafe-1.1.1-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:bf5aa3cbcfdf57fa2ee9cd1822c862ef23037f5c832ad09cfea57fa846dec193"},
     {file = "MarkupSafe-1.1.1-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:46c99d2de99945ec5cb54f23c8cd5689f6d7177305ebff350a58ce5f8de1669e"},
     {file = "MarkupSafe-1.1.1-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:ba59edeaa2fc6114428f1637ffff42da1e311e29382d81b339c1817d37ec93c6"},
+    {file = "MarkupSafe-1.1.1-cp37-cp37m-manylinux2010_i686.whl", hash = "sha256:6fffc775d90dcc9aed1b89219549b329a9250d918fd0b8fa8d93d154918422e1"},
+    {file = "MarkupSafe-1.1.1-cp37-cp37m-manylinux2010_x86_64.whl", hash = "sha256:a6a744282b7718a2a62d2ed9d993cad6f5f585605ad352c11de459f4108df0a1"},
+    {file = "MarkupSafe-1.1.1-cp37-cp37m-manylinux2014_aarch64.whl", hash = "sha256:195d7d2c4fbb0ee8139a6cf67194f3973a6b3042d742ebe0a9ed36d8b6f0c07f"},
     {file = "MarkupSafe-1.1.1-cp37-cp37m-win32.whl", hash = "sha256:b00c1de48212e4cc9603895652c5c410df699856a2853135b3967591e4beebc2"},
     {file = "MarkupSafe-1.1.1-cp37-cp37m-win_amd64.whl", hash = "sha256:9bf40443012702a1d2070043cb6291650a0841ece432556f784f004937f0f32c"},
     {file = "MarkupSafe-1.1.1-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:6788b695d50a51edb699cb55e35487e430fa21f1ed838122d722e0ff0ac5ba15"},
     {file = "MarkupSafe-1.1.1-cp38-cp38-manylinux1_i686.whl", hash = "sha256:cdb132fc825c38e1aeec2c8aa9338310d29d337bebbd7baa06889d09a60a1fa2"},
     {file = "MarkupSafe-1.1.1-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:13d3144e1e340870b25e7b10b98d779608c02016d5184cfb9927a9f10c689f42"},
+    {file = "MarkupSafe-1.1.1-cp38-cp38-manylinux2010_i686.whl", hash = "sha256:acf08ac40292838b3cbbb06cfe9b2cb9ec78fce8baca31ddb87aaac2e2dc3bc2"},
+    {file = "MarkupSafe-1.1.1-cp38-cp38-manylinux2010_x86_64.whl", hash = "sha256:d9be0ba6c527163cbed5e0857c451fcd092ce83947944d6c14bc95441203f032"},
+    {file = "MarkupSafe-1.1.1-cp38-cp38-manylinux2014_aarch64.whl", hash = "sha256:caabedc8323f1e93231b52fc32bdcde6db817623d33e100708d9a68e1f53b26b"},
     {file = "MarkupSafe-1.1.1-cp38-cp38-win32.whl", hash = "sha256:596510de112c685489095da617b5bcbbac7dd6384aeebeda4df6025d0256a81b"},
     {file = "MarkupSafe-1.1.1-cp38-cp38-win_amd64.whl", hash = "sha256:e8313f01ba26fbbe36c7be1966a7b7424942f670f38e666995b88d012765b9be"},
+    {file = "MarkupSafe-1.1.1-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:d73a845f227b0bfe8a7455ee623525ee656a9e2e749e4742706d80a6065d5e2c"},
+    {file = "MarkupSafe-1.1.1-cp39-cp39-manylinux1_i686.whl", hash = "sha256:98bae9582248d6cf62321dcb52aaf5d9adf0bad3b40582925ef7c7f0ed85fceb"},
+    {file = "MarkupSafe-1.1.1-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:2beec1e0de6924ea551859edb9e7679da6e4870d32cb766240ce17e0a0ba2014"},
+    {file = "MarkupSafe-1.1.1-cp39-cp39-manylinux2010_i686.whl", hash = "sha256:7fed13866cf14bba33e7176717346713881f56d9d2bcebab207f7a036f41b850"},
+    {file = "MarkupSafe-1.1.1-cp39-cp39-manylinux2010_x86_64.whl", hash = "sha256:6f1e273a344928347c1290119b493a1f0303c52f5a5eae5f16d74f48c15d4a85"},
+    {file = "MarkupSafe-1.1.1-cp39-cp39-manylinux2014_aarch64.whl", hash = "sha256:feb7b34d6325451ef96bc0e36e1a6c0c1c64bc1fbec4b854f4529e51887b1621"},
+    {file = "MarkupSafe-1.1.1-cp39-cp39-win32.whl", hash = "sha256:22c178a091fc6630d0d045bdb5992d2dfe14e3259760e713c490da5323866c39"},
+    {file = "MarkupSafe-1.1.1-cp39-cp39-win_amd64.whl", hash = "sha256:b7d644ddb4dbd407d31ffb699f1d140bc35478da613b441c582aeb7c43838dd8"},
     {file = "MarkupSafe-1.1.1.tar.gz", hash = "sha256:29872e92839765e546828bb7754a68c418d927cd064fd4708fab9fe9c8bb116b"},
 ]
 more-itertools = [
@@ -773,6 +811,8 @@ pyyaml = [
     {file = "PyYAML-5.3.1-cp37-cp37m-win_amd64.whl", hash = "sha256:73f099454b799e05e5ab51423c7bcf361c58d3206fa7b0d555426b1f4d9a3eaf"},
     {file = "PyYAML-5.3.1-cp38-cp38-win32.whl", hash = "sha256:06a0d7ba600ce0b2d2fe2e78453a470b5a6e000a985dd4a4e54e436cc36b0e97"},
     {file = "PyYAML-5.3.1-cp38-cp38-win_amd64.whl", hash = "sha256:95f71d2af0ff4227885f7a6605c37fd53d3a106fcab511b8860ecca9fcf400ee"},
+    {file = "PyYAML-5.3.1-cp39-cp39-win32.whl", hash = "sha256:ad9c67312c84def58f3c04504727ca879cb0013b2517c85a9a253f0cb6380c0a"},
+    {file = "PyYAML-5.3.1-cp39-cp39-win_amd64.whl", hash = "sha256:6034f55dab5fea9e53f436aa68fa3ace2634918e8b5994d82f3621c04ff5ed2e"},
     {file = "PyYAML-5.3.1.tar.gz", hash = "sha256:b8eac752c5e14d3eca0e6dd9199cd627518cb5ec06add0de9d32baeee6fe645d"},
 ]
 redis = [
@@ -810,6 +850,10 @@ safety = [
     {file = "safety-1.9.0-py2.py3-none-any.whl", hash = "sha256:86c1c4a031fe35bd624fce143fbe642a0234d29f7cbf7a9aa269f244a955b087"},
     {file = "safety-1.9.0.tar.gz", hash = "sha256:23bf20690d4400edc795836b0c983c2b4cbbb922233108ff925b7dd7750f00c9"},
 ]
+sentry-sdk = [
+    {file = "sentry-sdk-0.20.3.tar.gz", hash = "sha256:4ae8d1ced6c67f1c8ea51d82a16721c166c489b76876c9f2c202b8a50334b237"},
+    {file = "sentry_sdk-0.20.3-py2.py3-none-any.whl", hash = "sha256:e75c8c58932bda8cd293ea8e4b242527129e1caaec91433d21b8b2f20fee030b"},
+]
 six = [
     {file = "six-1.15.0-py2.py3-none-any.whl", hash = "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"},
     {file = "six-1.15.0.tar.gz", hash = "sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259"},
@@ -834,19 +878,28 @@ typed-ast = [
     {file = "typed_ast-1.4.1-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:269151951236b0f9a6f04015a9004084a5ab0d5f19b57de779f908621e7d8b75"},
     {file = "typed_ast-1.4.1-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:24995c843eb0ad11a4527b026b4dde3da70e1f2d8806c99b7b4a7cf491612652"},
     {file = "typed_ast-1.4.1-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:fe460b922ec15dd205595c9b5b99e2f056fd98ae8f9f56b888e7a17dc2b757e7"},
+    {file = "typed_ast-1.4.1-cp36-cp36m-manylinux2014_aarch64.whl", hash = "sha256:fcf135e17cc74dbfbc05894ebca928ffeb23d9790b3167a674921db19082401f"},
     {file = "typed_ast-1.4.1-cp36-cp36m-win32.whl", hash = "sha256:4e3e5da80ccbebfff202a67bf900d081906c358ccc3d5e3c8aea42fdfdfd51c1"},
     {file = "typed_ast-1.4.1-cp36-cp36m-win_amd64.whl", hash = "sha256:249862707802d40f7f29f6e1aad8d84b5aa9e44552d2cc17384b209f091276aa"},
     {file = "typed_ast-1.4.1-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:8ce678dbaf790dbdb3eba24056d5364fb45944f33553dd5869b7580cdbb83614"},
     {file = "typed_ast-1.4.1-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:c9e348e02e4d2b4a8b2eedb48210430658df6951fa484e59de33ff773fbd4b41"},
     {file = "typed_ast-1.4.1-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:bcd3b13b56ea479b3650b82cabd6b5343a625b0ced5429e4ccad28a8973f301b"},
+    {file = "typed_ast-1.4.1-cp37-cp37m-manylinux2014_aarch64.whl", hash = "sha256:f208eb7aff048f6bea9586e61af041ddf7f9ade7caed625742af423f6bae3298"},
     {file = "typed_ast-1.4.1-cp37-cp37m-win32.whl", hash = "sha256:d5d33e9e7af3b34a40dc05f498939f0ebf187f07c385fd58d591c533ad8562fe"},
     {file = "typed_ast-1.4.1-cp37-cp37m-win_amd64.whl", hash = "sha256:0666aa36131496aed8f7be0410ff974562ab7eeac11ef351def9ea6fa28f6355"},
     {file = "typed_ast-1.4.1-cp38-cp38-macosx_10_15_x86_64.whl", hash = "sha256:d205b1b46085271b4e15f670058ce182bd1199e56b317bf2ec004b6a44f911f6"},
     {file = "typed_ast-1.4.1-cp38-cp38-manylinux1_i686.whl", hash = "sha256:6daac9731f172c2a22ade6ed0c00197ee7cc1221aa84cfdf9c31defeb059a907"},
     {file = "typed_ast-1.4.1-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:498b0f36cc7054c1fead3d7fc59d2150f4d5c6c56ba7fb150c013fbc683a8d2d"},
+    {file = "typed_ast-1.4.1-cp38-cp38-manylinux2014_aarch64.whl", hash = "sha256:7e4c9d7658aaa1fc80018593abdf8598bf91325af6af5cce4ce7c73bc45ea53d"},
     {file = "typed_ast-1.4.1-cp38-cp38-win32.whl", hash = "sha256:715ff2f2df46121071622063fc7543d9b1fd19ebfc4f5c8895af64a77a8c852c"},
     {file = "typed_ast-1.4.1-cp38-cp38-win_amd64.whl", hash = "sha256:fc0fea399acb12edbf8a628ba8d2312f583bdbdb3335635db062fa98cf71fca4"},
     {file = "typed_ast-1.4.1-cp39-cp39-macosx_10_15_x86_64.whl", hash = "sha256:d43943ef777f9a1c42bf4e552ba23ac77a6351de620aa9acf64ad54933ad4d34"},
+    {file = "typed_ast-1.4.1-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:92c325624e304ebf0e025d1224b77dd4e6393f18aab8d829b5b7e04afe9b7a2c"},
+    {file = "typed_ast-1.4.1-cp39-cp39-manylinux1_i686.whl", hash = "sha256:d648b8e3bf2fe648745c8ffcee3db3ff903d0817a01a12dd6a6ea7a8f4889072"},
+    {file = "typed_ast-1.4.1-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:fac11badff8313e23717f3dada86a15389d0708275bddf766cca67a84ead3e91"},
+    {file = "typed_ast-1.4.1-cp39-cp39-manylinux2014_aarch64.whl", hash = "sha256:0d8110d78a5736e16e26213114a38ca35cb15b6515d535413b090bd50951556d"},
+    {file = "typed_ast-1.4.1-cp39-cp39-win32.whl", hash = "sha256:b52ccf7cfe4ce2a1064b18594381bccf4179c2ecf7f513134ec2f993dd4ab395"},
+    {file = "typed_ast-1.4.1-cp39-cp39-win_amd64.whl", hash = "sha256:3742b32cf1c6ef124d57f95be609c473d7ec4c14d0090e5a5e05a15269fb4d0c"},
     {file = "typed_ast-1.4.1.tar.gz", hash = "sha256:8c8aaad94455178e3187ab22c8b01a3837f8ee50e09cf31f1ba129eb293ec30b"},
 ]
 uritemplate = [
