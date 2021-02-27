@@ -39,6 +39,7 @@ Cache is set at create too with `CACHE_TIMEOUT_READ` setting. Cache is updated/d
 **list**
 ```
 GET /api/urls/
+Auth method: Basic
 
 Return a list of all the existing urls.
 Query Parameters
@@ -51,6 +52,7 @@ page	A page number within the paginated result set.
 **create**
 ```
 POST /api/urls/
+Auth method: None (Public)
 
 Create a new short url.
 Request Body
@@ -63,6 +65,8 @@ click_limit (optional, if set url is deleted after limit is reached)
 **read**
 ```
 GET /api/urls/{token}/
+Auth method: None (Public)
+
 
 Return the given url using token.
 Path Parameters
@@ -73,6 +77,7 @@ token required
 **update**
 ```
 PUT /api/urls/{token}/
+Auth method: Basic
 
 Update long url (long_url body needed)
 
@@ -86,6 +91,7 @@ click_limit
 **delete**
 ```
 DELETE /api/urls/{token}/
+Auth method: Basic
 
 Delete url and clear cache
 
