@@ -1,2 +1,5 @@
 [bandit]
-skips: B101
+exclude: test_*.py,./venv/,./env/,./node_modules/,./cacheback/,./.env,./.venv,migrations,tests
+skips: B101,B311
+# B101: assert
+# B311: random

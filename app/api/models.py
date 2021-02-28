@@ -23,7 +23,7 @@ class CollisionLog(models.Model):
 class ClickLog(models.Model):
     url = models.ForeignKey("Url", on_delete=models.CASCADE, related_name="clicks")
     click_date = models.DateTimeField(auto_now_add=True)
-    ip_address = models.GenericIPAddressField(default="0.0.0.0")
+    ip_address = models.GenericIPAddressField(default="0.0.0.0") #nosec
     http_referer = models.CharField(max_length=500, blank=True)
 
     def __str__(self):
