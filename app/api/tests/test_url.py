@@ -15,7 +15,7 @@ class TestURLWithoutDB:
 @pytest.mark.django_db
 class TestURLWithDB:
     schema_url = "https://www.google.com"
-    test_token = "test"
+    test_token = "test"  # nosec
 
     def setup_method(self, method):
         ApiConfig.USE_CACHE = "cache" in method.__name__

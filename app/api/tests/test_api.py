@@ -45,7 +45,9 @@ def test_redirect(path, path_expected, client):
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrize("path", [("/not_found"), (f"/{conf.API_ROOT_PATH}/models"),])
+@pytest.mark.parametrize(
+    "path", [("/not_found"), (f"/{conf.API_ROOT_PATH}/models"),],
+)
 def test_404(path, client):
     with assertTemplateUsed("404.html"):
         response = client.get(path)

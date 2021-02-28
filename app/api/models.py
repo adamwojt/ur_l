@@ -23,7 +23,7 @@ class CollisionLog(models.Model):
 class ClickLog(models.Model):
     url = models.ForeignKey("Url", on_delete=models.CASCADE, related_name="clicks")
     click_date = models.DateTimeField(auto_now_add=True)
-    ip_address = models.GenericIPAddressField(default="0.0.0.0") #nosec
+    ip_address = models.GenericIPAddressField(default="0.0.0.0")  # nosec
     http_referer = models.CharField(max_length=500, blank=True)
 
     def __str__(self):
@@ -32,8 +32,7 @@ class ClickLog(models.Model):
 
 @receiver(post_save, sender=ClickLog)
 def _click_log_post_save(sender, instance, *args, **kwargs):
-    """ Observe number of clicks and remove when limit is reached
-    """
+    """Observe number of clicks and remove when limit is reached"""
     limit = instance.url.click_limit
     if not kwargs.get("created") or not limit:
         return
@@ -140,8 +139,8 @@ def _url_post_delete(sender, instance, *args, **kwargs):
 
 @receiver(post_save, sender=Url)
 def _url_post_save(sender, instance, *args, **kwargs):
-    """ Update cache on save preserving timeout
-        Credit: https://stackoverflow.com/a/7934958
+    """Update cache on save preserving timeout
+    Credit: https://stackoverflow.com/a/7934958
     """
     if conf.USE_CACHE:
         timeout = cache.ttl(instance.token)
