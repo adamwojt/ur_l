@@ -26,7 +26,7 @@ RUN apt-get update \
         build-essential
 
 # Install Poetry - respects $POETRY_VERSION & $POETRY_HOME
-ENV POETRY_VERSION=1.0.10
+ENV POETRY_VERSION=1.1.4
 RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
 
 # We copy our Python requirements here to cache them
@@ -74,7 +74,6 @@ COPY --from=builder-base $VENV_PATH $VENV_PATH
 
 COPY ./app /app
 WORKDIR /app
-RUN mkdir staticfiles
 
 COPY ./python_docker/docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
