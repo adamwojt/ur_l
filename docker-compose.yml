@@ -39,6 +39,7 @@ services:
       - UR_L_PORT=${UR_L_PORT:-8000}
       - URL_USE_CACHE=${URL_USE_CACHE:-1}
       - UR_L_DOMAIN=${UR_L_DOMAIN:?Domain}
+      - SENTRY_DNS=${SENTRY_DNS}
     command: runserver
     depends_on:
       - postgres

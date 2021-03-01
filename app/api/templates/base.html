@@ -92,22 +92,10 @@
     <link rel="yandex-tableau-widget" href="/static/favicon/yandex-browser-manifest.json">
     <link href="static/main.eaf9429c300b96638096.css" rel="stylesheet">
     <link rel="canonical" href="https://oor.lu" />
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CV4F052XKL"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag()
-        {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'G-CV4F052XKL');
-    </script>
 </head>
 
 <body>
-    <div class="page">
+       <div class="page">
         <main class="main" id="main">
         <img src="static/images/76ddeb0c9b3d0b23a46d443b4a49d49b.svg" alt="Logo" id="logo" class="main__logo">
         <h1 style="font-size: 1px; color: #ffd571;">Short links are free with oor.lu url shortener.</h1>
@@ -117,11 +105,35 @@
             <input type="submit" class="main__button active" value="shorten"></form>
         {% endblock %}
         </main>
-        <footer class="footer">
+       <footer class="footer">
+	    <div id="cookies-eu-banner" style="display: none;">
+		I accept the use of cookies by Google Analytics for statistical purposes.
+<div style="display: flex;align-items: center;display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;"><a href="#" style="text-transform: none;" id="cookies-eu-accept" class="footer__link-text">Accept</a><a href="#" style="text-transform: none;" id="cookies-eu-reject" class="footer__link-text">Reject</a></div>
+	    </div>
+	    <script src="static/cookies-eu-banner.min.js"></script>
+	    <script>
+		new CookiesEuBanner(function () {
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.googletagmanager.com/gtag/js?id=G-CV4F052XKL','gtag');
+
+		window.dataLayer = window.dataLayer || [];		
+        	function gtag(){dataLayer.push(arguments);}
+		gtag('consent', 'update', {
+		'analytics_storage': 'granted'
+		});
+		gtag('js', new Date());
+		gtag('config', 'G-CV4F052XKL');
+		});
+
+	    </script>
             <nav>
+		<p style="text-align: center;color: #56556e;">© 2021 oor.lu Handmade in LT, Kaunas. All rights reserved</p>
                 <ul class="footer__links">
                     <li class="footer__link-text" id="about-button">About</li>
                     <li class="footer__link-text" id="more-button">Support us</li>
+                    <li class="footer__link-text" id="privacy-button">Privacy Policy</li>
                 </ul>
             </nav>
             <div class="modal" id="about-modal">
@@ -136,7 +148,7 @@
                         title="Redis" target="_blank">Redis cache</a> for improved
                     performance. Requirments of the project can be found <a href="https://www.dropbox.com/s/2yqy7uvhjeb7f0i/URLShortener-DjangoTask.rst?dl=0"
                         title="Project Requirments" target="_blank">here</a>.</p>
-                <a class="link-button" href="https://github.com/adamwojt/ur_l" title="Adam Wojtczak" target="_blank">© Adam Wojtczak</a>
+                <a class="link-button" href="https://www.linkedin.com/in/adamwojtczak/" title="Adam Wojtczak" target="_blank">© Adam Wojtczak</a>
                 <a class="link-button" href="https://github.com/adamwojt/oorlu-cli" title="oorlu-cli" target="_blank">oorlu-CLI</a>
                 <p class="title">Frontend:</p>
                 <p>Front end was designed with simplicity and code independence in
@@ -158,7 +170,26 @@
                 <p class="title">ETH:</p>0x79f6fdbb0f611fa50e559e1b452e02953808f842
                 <p></p>
             </div>
-        </footer>
+            <div class="modal" id="privacy-modal">
+                <div class="modal__header">
+                    <h4 class="modal__title">Privacy Policy</h4><img src="static/images/d688027c63af7625f6550079aab76357.png"
+                        alt="oor.lu" class="modal__logo"></div>
+		<p class="title">Cookies</p>
+                <p>We use Google Analytics to to help monitor the website thus _ga cookie is stored. In order to store your consent of _ga cookie we also use technical cookie hasConsent. You can inspect or delete your cookies by going to Storage Inspector in your browser (Shift + F9 on most browsers).
+                </p>
+		<p class="title">Creating short link</p>
+		<p>Creating short link creates record in database that stores long url and datetime when created, we do not gather any additional information about user. When you create a Oorlu Link, the original URLs you have shortened and the corresponding Oorlu Links are publicly available for those that have short links (random 7 char token), example: oor.lu/xYCTiiI.</p>
+		<p>Do not use Oor.lu for confidential information. We will do our best to protect long links we store but there is no ultimate protection and such things as brute force attacks (someone trying out combinations of url tokens many times) may happen that could expose your long link to someone that you didn't share short url with.</p>
+		<p>We reserve right to delete links if we see they are leading to any malicious websites and in general we do not guarantee that any link will persist in our database.</p>
+		<p>You can contact us via social media, see `About` menu if you want to delete link you posted - we will do our best to help you.</p>
+		<p class="title">Opening short link</p>
+		<p> Upon opening oorlu short link we store IP, datetime and HTTP referer as part of statistics. These are to monitor network load and performance of website and to identify any spam / malicious use. Currently this info is not available for public users.</p>
+		<p>Upon clicking we redirect you to long url that was entered when creating link.</p>
+		<p class="title">IMPORTANT</p>
+		<p>Under no circumstances we are responsible for contents of long url website author of short link has provided. If you want to see where short url leads prior to opening it you can go to https://oor.lu/{token}/examine where token is 7 char long from short link, example: <a href="https://oor.lu/tXVM8w0/examine">oor.lu/tXVM8w0/examine</a></p>
+            </div>
+
+	</footer>
     </div>
     <script src="static/main.5f889976d4e3d1a6195b.js"></script>
 </body>

@@ -16,7 +16,7 @@ class ApiConfig(AppConfig):
     TOKEN_REGEX_MATCH = rf"(?P<token>[A-Za-z0-9+_-]{{{TOKEN_LENGTH_STR}}})"
 
     SHORT_URL_PATH = rf"^{TOKEN_REGEX_MATCH}\/?$"
-
+    SHORT_URL_EXAMINE_PATH = rf"^{TOKEN_REGEX_MATCH}\/examine\/?$"
     API_ROOT_PATH = "api/"
     API_URL_PATH = f"{API_ROOT_PATH[:-1]}/urls/"
     API_TOKEN_PATH = rf"^{API_URL_PATH[:-1]}/{TOKEN_REGEX_MATCH}/"
