@@ -1,8 +1,9 @@
 from rest_framework.throttling import AnonRateThrottle
 
+
 class BurstRateThrottle(AnonRateThrottle):
-    scope = 'anon_burst'
+    scope = "anon_burst"
+
 
 class SustainedRateThrottle(AnonRateThrottle):
-    scope = 'anon_sustained'
-
+    scope = "anon_sustained"

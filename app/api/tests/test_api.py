@@ -48,7 +48,13 @@ def test_redirect(path, path_expected, client):
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrize("path", [("/not_found"), (f"/{conf.API_ROOT_PATH}/models"),])
+@pytest.mark.parametrize(
+    "path",
+    [
+        ("/not_found"),
+        (f"/{conf.API_ROOT_PATH}/models"),
+    ],
+)
 def test_404(path, client):
     with assertTemplateUsed("404.html"):
         response = client.get(path)
@@ -60,17 +66,23 @@ def test_api_workflow(api_client, django_assert_num_queries):
     limit = 4
     urls_create = [
         {
-            "data": {"long_url": "invalid",},
+            "data": {
+                "long_url": "invalid",
+            },
             "expected": {"long_url": ["Wrong url given"]},
             "status": HTTP_400_BAD_REQUEST,
         },
         {
-            "data": {"long_url": "www.google.com",},
+            "data": {
+                "long_url": "www.google.com",
+            },
             "expected": {"long_url": "http://www.google.com", "click_limit": 0},
             "status": HTTP_201_CREATED,
         },
         {
-            "data": {"long_url": "www.google.com",},
+            "data": {
+                "long_url": "www.google.com",
+            },
             "expected": {"long_url": "http://www.google.com", "click_limit": 0},
             "status": HTTP_201_CREATED,
         },

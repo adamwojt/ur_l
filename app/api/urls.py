@@ -16,28 +16,32 @@ from .apps import ApiConfig as conf
 def _redirect_to_url_api_list_view(_):
     return redirect("/" + conf.API_URL_PATH)
 
+
 class StaticViewSitemap(sitemaps.Sitemap):
     priority = 1.0
-    changefreq = 'yearly'
+    changefreq = "yearly"
     protocol = "https"
 
     def items(self):
-        return ['root']
+        return ["root"]
 
     def location(self, item):
         return reverse(item)
 
     def lastmod(*args, **kwargs):
-        return datetime.datetime(2021,2,25)
+        return datetime.datetime(2021, 2, 25)
 
-sitemaps = {
-    'url': StaticViewSitemap
-}
+
+sitemaps = {"url": StaticViewSitemap}
 
 urlpatterns = [
     path("", views.shorten_url, name="root"),
     re_path(conf.SHORT_URL_PATH, never_cache(views.short_url), name="url_short"),
-    re_path(conf.SHORT_URL_EXAMINE_PATH, never_cache(views.short_url_examine), name="url_short_examine"),
+    re_path(
+        conf.SHORT_URL_EXAMINE_PATH,
+        never_cache(views.short_url_examine),
+        name="url_short_examine",
+    ),
     path(conf.API_URL_PATH, api_views.UrlList.as_view(), name="url_list"),
     re_path(conf.API_TOKEN_PATH, api_views.UrlDetail.as_view(), name="url_get"),
     path(conf.API_ROOT_PATH, _redirect_to_url_api_list_view, name="url_root"),
@@ -46,8 +50,12 @@ urlpatterns = [
         include_docs_urls(title=conf.API_DOCS_TITLE),
         name="url_docs",
     ),
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
-         name='django.contrib.sitemaps.views.sitemap'),
+    path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": sitemaps},
+        name="django.contrib.sitemaps.views.sitemap",
+    ),
     path(
         "robots.txt",
         TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),

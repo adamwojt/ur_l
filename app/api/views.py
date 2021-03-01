@@ -34,6 +34,7 @@ def short_url(request, token):
 
     return redirect(check_and_update_url_schema(long_url))
 
+
 def short_url_examine(request, token):
     long_url = Url.objects.get_long_url(token)
 
@@ -41,7 +42,7 @@ def short_url_examine(request, token):
         return render(request, "404.html", {"token": token}, status=404)
 
     return HttpResponse(f"Token {token} redirects to <b>{long_url}</b>")
-    
+
 
 @require_http_methods(["GET"])
 def shorten_url(request):
