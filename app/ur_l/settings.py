@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.sitemaps",
     "api.apps.ApiConfig",
     "rest_framework",
+    "django_extensions",
 ]
 
 MIDDLEWARE = [
@@ -56,6 +57,30 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = f"{BASE_APP_NAME}.urls"
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'filters': None,
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+        'propagate': True,
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    },
+}
 
 TEMPLATES = [
     {

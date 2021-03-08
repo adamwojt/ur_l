@@ -1,7 +1,7 @@
 import os
 
 from django.apps import AppConfig
-
+from django.conf import settings
 
 class ApiConfig(AppConfig):
     name = "api"
@@ -35,3 +35,4 @@ class ApiConfig(AppConfig):
 
     # Log token collisions for metrics
     LOG_COLLISIONS = os.environ.get("LOG_TOKEN_COLLISION") == "1"
+    BANNED_NETLOCS = frozenset(line.strip() for line in open(settings.BASE_DIR / 'banned_netlocs'))

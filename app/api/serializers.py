@@ -1,3 +1,6 @@
+from urllib.parse import urlparse
+import logging
+
 from django.core.exceptions import ValidationError
 from django.core.validators import URLValidator
 from django.shortcuts import reverse
@@ -7,6 +10,7 @@ from .apps import ApiConfig as conf
 from .helpers import check_and_update_url_schema
 from .models import Url
 
+logger = logging.getLogger(__name__)
 
 class ShortUrlField(serializers.CharField):
     def to_representation(self, value):
@@ -31,8 +35,15 @@ class UrlSerializer(serializers.Serializer):
         try:
             URLValidator()(long_url)
         except ValidationError:
-            raise serializers.ValidationError("Wrong url given")
+            raise serializers.ValidationError("Wrong url given.")
+        try:
+            parsed = urlparse(long_url)
+        except:
+            raise serializers.ValidationError("Cannot parse url.")
         else:
+            if parsed.netloc in conf.BANNED_NETLOCS:
+                logger.info("Spam netloc blocked: %s", parsed.netloc)
+                raise serializers.ValidationError("Wrong url given.")
             return long_url
 
     def create(self, validated_data):
