@@ -16,6 +16,7 @@ class UrlList(ListAPIView):
     """
     get:
     Return a list of all the existing urls.
+    ** Basic Auth is Required.**
 
     post:
     Create a new short url.
@@ -44,9 +45,12 @@ class UrlDetail(GenericAPIView):
 
     put:
     Update long url (long_url body needed)
+    ** Basic Auth is Required.**
 
     delete:
     Delete url and clear cache
+    ** Basic Auth is Required.**
+
     """
 
     public_methods = SAFE_METHODS
