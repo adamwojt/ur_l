@@ -23,7 +23,6 @@ class ApiConfig(AppConfig):
     API_DOCS_PATH = f"{API_ROOT_PATH[:-1]}/docs/"
     API_DOCS_TITLE = "Oor.lu Url Shortener Api"
 
-    USE_CACHE = os.environ.get("URL_USE_CACHE") == "1"
     # Determines how long token will stay in cache after creation
     # Default : 15 min
     CACHE_TIMEOUT_CREATE = int(os.environ.get("CACHE_TIMEOUT_CREATE"))

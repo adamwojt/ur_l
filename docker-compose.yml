@@ -37,7 +37,6 @@ services:
       - LOG_TOKEN_COLLISION=${LOG_TOKEN_COLLISION:-1}
       - NUM_GUNICORN_WORKERS=${NUM_GUNICORN_WORKERS:-4}
       - UR_L_PORT=${UR_L_PORT:-8000}
-      - URL_USE_CACHE=${URL_USE_CACHE:-1}
       - UR_L_DOMAIN=${UR_L_DOMAIN:?Domain}
       - SENTRY_DNS=${SENTRY_DNS}
     command: runserver

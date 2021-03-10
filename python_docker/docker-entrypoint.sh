@@ -17,7 +17,6 @@ printf $Red"*******************************\n"
 if [ "$1" = "runserver" ]; then
 	printf $Cyan"Port -> $UR_L_PORT\n"
 	printf $Cyan"Workers -> $NUM_GUNICORN_WORKERS\n"
-	printf $Cyan"Use Cache -> $URL_USE_CACHE\n"
 	printf $Cyan"Cache timeout on create -> $CACHE_TIMEOUT_CREATE\n"
 	printf $Cyan"Cache timeout on read -> $CACHE_TIMEOUT_READ\n"
 	printf $Cyan"Log Token Collision -> $LOG_TOKEN_COLLISION\n"

@@ -70,13 +70,18 @@ LOGGING = {
     },
     'root': {
         'handlers': ['console'],
-        'level': 'DEBUG',
+        'level': 'WARNING',
         'propagate': True,
     },
     'loggers': {
         'django': {
             'handlers': ['console'],
-            'level': 'DEBUG',
+            'level': 'WARNING',
+            'propagate': False,
+        },
+         'url': {
+            'handlers': ['console'],
+            'level': 'WARNING',
             'propagate': False,
         },
     },

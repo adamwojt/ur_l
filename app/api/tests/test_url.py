@@ -17,9 +17,6 @@ class TestURLWithDB:
     schema_url = "https://www.google.com"
     test_token = "test"
 
-    def setup_method(self, method):
-        ApiConfig.USE_CACHE = "cache" in method.__name__
-
     def test_create_url(self):
         Url.objects.create_short_url(self.schema_url)
 
@@ -38,11 +35,6 @@ class TestURLWithDB:
         # Delete and check if cache was deleted too
         url.delete()
         assert not cache.get(token)
-
-    def test_no_cash3_created(self):
-        """ See `setup_method` """
-        url = Url.objects.create_short_url(self.schema_url)
-        assert not cache.get(url.token)
 
     def test_token_collision(self):
         url = Url.objects.create_short_url(self.schema_url, token=self.test_token)
@@ -67,9 +59,4 @@ class TestURLWithDB:
     def test_get_url_using_cache(self, django_assert_num_queries):
         url = Url.objects.create_short_url(self.schema_url, token=self.test_token)
         with django_assert_num_queries(0):
-            assert Url.objects.get_long_url(url.token) == url.long_url
-
-    def test_get_url_using_db(self, django_assert_num_queries):
-        url = Url.objects.create_short_url(self.schema_url, token=self.test_token)
-        with django_assert_num_queries(1):
             assert Url.objects.get_long_url(url.token) == url.long_url

@@ -9,7 +9,7 @@ from django.dispatch.dispatcher import receiver
 
 from .apps import ApiConfig as conf
 
-_logger = logging.getLogger(__name__)
+_logger = logging.getLogger('url')
 
 
 class CollisionLog(models.Model):
@@ -90,24 +90,18 @@ class UrlManager(models.Manager):
         Returns:
             TYPE: str
         """
-        long_url = ""
 
-        if conf.USE_CACHE:
-            long_url = cache.get(token)
-
-        if not long_url:
+        if (long_url := cache.get(token)) is None:
             try:
                 long_url = self.get(pk=token).long_url
             except self.model.DoesNotExist:
-                pass
+                cache.set(token, False, timeout=conf.CACHE_TIMEOUT_READ)
             else:
+                cache.set(token, long_url, timeout=conf.CACHE_TIMEOUT_READ)
+            finally:
                 _logger.debug("Token fetched from db : %s", token)
         else:
             _logger.debug("Token fetched from cache : %s", token)
-
-        if long_url:
-            if conf.USE_CACHE:
-                cache.set(token, long_url, timeout=conf.CACHE_TIMEOUT_READ)
 
         return long_url
 
@@ -133,8 +127,7 @@ class Url(models.Model):
 @receiver(post_delete, sender=Url)
 def _url_post_delete(sender, instance, *args, **kwargs):
     """ Clear cache on delete """
-    if conf.USE_CACHE:
-        cache.delete(instance.token)
+    cache.delete(instance.token)
 
 
 @receiver(post_save, sender=Url)
@@ -142,11 +135,10 @@ def _url_post_save(sender, instance, *args, **kwargs):
     """Update cache on save preserving timeout
     Credit: https://stackoverflow.com/a/7934958
     """
-    if conf.USE_CACHE:
-        timeout = cache.ttl(instance.token)
-        if timeout or kwargs.get("created"):
-            cache.set(
-                instance.token,
-                instance.long_url,
-                timeout=timeout or conf.CACHE_TIMEOUT_CREATE,
-            )
+    timeout = cache.ttl(instance.token)
+    if timeout or kwargs.get("created"):
+        cache.set(
+            instance.token,
+            instance.long_url,
+            timeout=timeout or conf.CACHE_TIMEOUT_CREATE,
+        )
