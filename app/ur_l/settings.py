@@ -28,7 +28,8 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("TARGET_ENV") == "development"
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "[::1]", os.environ.get("UR_L_DOMAIN")]
+MY_DOMAIN = os.environ.get("UR_L_DOMAIN") 
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "[::1]", MY_DOMAIN , "www." + MY_DOMAIN]
 USE_X_FORWARDED_HOST = True
 
 # Application definition
@@ -70,18 +71,18 @@ LOGGING = {
     },
     'root': {
         'handlers': ['console'],
-        'level': 'WARNING',
+        'level': 'INFO',
         'propagate': True,
     },
     'loggers': {
         'django': {
             'handlers': ['console'],
-            'level': 'WARNING',
+            'level': 'INFO',
             'propagate': False,
         },
          'url': {
             'handlers': ['console'],
-            'level': 'WARNING',
+            'level': 'INFO',
             'propagate': False,
         },
     },
