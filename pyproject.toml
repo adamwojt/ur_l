@@ -12,7 +12,7 @@ authors = ["Adam Wojtczak <adam1edinburgh@gmail.com>"]
 python = "^3.8"
 
 coverage = { version = "5.0.3", extras = ["toml"]}
-django = "3.1"
+django = "3.1.13"
 django-redis = "4.12.1"
 djangorestframework = "3.11.2"
 fakeredis = "1.4.2"
